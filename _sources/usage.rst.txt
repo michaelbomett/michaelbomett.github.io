@@ -1,0 +1,147 @@
+=============
+Installation
+=============
+
+This application is a webapp. It can run in any web browser.
+To access, visit https://techfactura.com
+
+
+
+Android App
+===========
+To use the application on Android, visit https://techfactura.com
+A popup menu will appear at the bottom on your browser screen saying 'Add to HomeScreen'
+Clicking on this popup will automatically install the app on your android device.
+
+Alternatively, Navigate to the bottom of the page, below Contact us and click on 'Install' button
+
+IOS/Apple App
+=============
+To use the application on IOS/Apple, visit https://techfactura.com
+Select the share button at the bottom of the browser and navigate to 'Add to HomeScreen'
+Clicking on this will automatically install the app on your IOS device
+
+
+Windows OS
+==========
+To use the application on Windows, visit https://techfactura.com on your browser.
+
+To install the application, click on the 'Install' button below Contact us.
+The application will be installed, a shortcut will be placed on your desktop.
+
+
+============
+Registration
+============
+Registration requires users to enter a unique username, optional email address and a password.
+
+Guided Setup
+============
+Once registered, the user is guided through the setup process which includes.
+
+1. Verifying their email address
+2. Creating their profile which includes personal information & location
+3. Verifying their phone number
+4. Configuring their Trading settings, Mobile Money settings and App settings(SMS, Email, Push) notifications
+5. If the account is a Company registration, they will be required to create a Company profile.
+
+
+=========
+Features
+=========
+Key Features for the application are:
+
+Invoicing
+=========
+The application allows registered Users to generate invoices to registered Companies
+To generate an invoice, navigate to 'Transactions' and click on Create Invoice.
+Select the Company you want to invoice from the list.
+
+There are two methods of invoicing.
+
+1. Standard Invoice - This will pick products and pricing from pre-configured list by the Company
+2. Custom Invoice - This will require the User/Supplier to input New product(Name, Price, Quantity, VAT)
+
+Clicking on the send button generates, the invoice and sends notifications (SMS/Email/Push) to the Company.
+
+
+Payments
+========
+The application allows Companies to Make payments for invoices through the following payment methods.
+
+1. Mobile Money
+
+The application is integrated with Business to Customer (B2C) from Mpesa to allow companies to send funds directly to a supplier's Mobile Wallet
+
+2. Bank Transfer
+
+The application allows a Company to setup a link to their bank account which can authorize payments to Supplier's bank account.
+
+3. Cash
+
+The application allows for cash transactions to be recorded by the Company.
+
+4. Cheque
+
+The application allows for Cheque payment to be recorded by the Company.
+
+Purchase orders
+===============
+The application allows Companies to generate purchase orders to their suppliers.
+Once received, a supplier may choose to generate an invoice based on the products/services in the purchase order
+
+Supplier Applications
+=====================
+Registered Users can make applications to Companies to supply products/services
+Companies will be able to Approve or Decline Applications from the application
+
+Adverts
+=======
+Registered Users can post adverts for products they are selling on the application.
+This adverts will be visible to anyone who logs in to the application.
+
+Company Products
+================
+Companies can post products that they regularly purchase from suppliers. This can either be made public or kept private, visible to only their own suppliers.
+
+
+==============
+Other Features
+==============
+1. Chat/Messaging Application
+
+This application comes with an inbuilt Messaging application which allows users to send each other messages within the platform.
+
+2. GeoLocation
+
+This application comes with an inbuilt GeoLocation feature that allows users to search for Companies and Adverts based on location information.
+
+3. Push Notifications
+
+This application comes with an inbuilt Push Notification system for Android and Windows devices. You can get alerts for:
+
+- New Purchase orders
+- New invoices
+- Payments
+- Chat/Messages
+- Supplier Applications, Approval or Decline
+
+4. SMS Notifications
+
+This application comes with inbuilt SMS Notifications for:
+
+- New Purchase orders
+- New invoices
+- Payments
+- Chat/Messages
+- Supplier Applications, Approval or Decline
+
+5. Email Notifications
+
+This application comes with inbuilt Email Notifications for:
+
+- New Purchase orders
+- New invoices
+- Payments
+- Chat/Messages
+- Supplier Applications, Approval or Decline

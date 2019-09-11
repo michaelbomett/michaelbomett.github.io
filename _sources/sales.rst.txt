@@ -1,0 +1,107 @@
+sales package
+=============
+
+
+.. toctree::
+
+
+Submodules
+----------
+
+sales.admin module
+------------------
+
+.. automodule:: sales.admin
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+sales.api\_urls module
+----------------------
+
+.. automodule:: sales.api_urls
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+sales.apps module
+-----------------
+
+.. automodule:: sales.apps
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+sales.cron module
+-----------------
+
+.. automodule:: sales.cron
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+sales.filters module
+--------------------
+
+.. automodule:: sales.filters
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
+sales.models module
+-------------------
+
+.. automodule:: sales.models
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+sales.send\_messages module
+---------------------------
+
+.. automodule:: sales.send_messages
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+sales.serializers module
+------------------------
+
+.. automodule:: sales.serializers
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+sales.tests module
+------------------
+
+.. automodule:: sales.tests
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+sales.urls module
+-----------------
+
+.. automodule:: sales.urls
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+sales.views module
+------------------
+
+.. automodule:: sales.views
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: sales
+   :members:
+   :undoc-members:
+   :show-inheritance:

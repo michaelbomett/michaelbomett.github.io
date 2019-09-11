@@ -1,0 +1,174 @@
+sales.migrations package
+========================
+
+Submodules
+----------
+
+sales.migrations.0001\_initial module
+-------------------------------------
+
+.. automodule:: sales.migrations.0001_initial
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+sales.migrations.0002\_auto\_20190812\_1607 module
+--------------------------------------------------
+
+.. automodule:: sales.migrations.0002_auto_20190812_1607
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+sales.migrations.0003\_auto\_20190812\_1654 module
+--------------------------------------------------
+
+.. automodule:: sales.migrations.0003_auto_20190812_1654
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+sales.migrations.0004\_auto\_20190812\_2031 module
+--------------------------------------------------
+
+.. automodule:: sales.migrations.0004_auto_20190812_2031
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+sales.migrations.0005\_auto\_20190812\_2224 module
+--------------------------------------------------
+
+.. automodule:: sales.migrations.0005_auto_20190812_2224
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+sales.migrations.0006\_auto\_20190813\_0131 module
+--------------------------------------------------
+
+.. automodule:: sales.migrations.0006_auto_20190813_0131
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+sales.migrations.0007\_payments\_transaction\_desc module
+---------------------------------------------------------
+
+.. automodule:: sales.migrations.0007_payments_transaction_desc
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+sales.migrations.0008\_payments\_pay\_user module
+-------------------------------------------------
+
+.. automodule:: sales.migrations.0008_payments_pay_user
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+sales.migrations.0009\_auto\_20190816\_0357 module
+--------------------------------------------------
+
+.. automodule:: sales.migrations.0009_auto_20190816_0357
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+sales.migrations.0010\_auto\_20190818\_1404 module
+--------------------------------------------------
+
+.. automodule:: sales.migrations.0010_auto_20190818_1404
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+sales.migrations.0011\_auto\_20190818\_1529 module
+--------------------------------------------------
+
+.. automodule:: sales.migrations.0011_auto_20190818_1529
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+sales.migrations.0012\_auto\_20190825\_1826 module
+--------------------------------------------------
+
+.. automodule:: sales.migrations.0012_auto_20190825_1826
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+sales.migrations.0013\_invoicenewtotal\_supplier module
+-------------------------------------------------------
+
+.. automodule:: sales.migrations.0013_invoicenewtotal_supplier
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+sales.migrations.0014\_auto\_20190830\_1356 module
+--------------------------------------------------
+
+.. automodule:: sales.migrations.0014_auto_20190830_1356
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+sales.migrations.0015\_auto\_20190830\_1402 module
+--------------------------------------------------
+
+.. automodule:: sales.migrations.0015_auto_20190830_1402
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+sales.migrations.0016\_settings\_distance module
+------------------------------------------------
+
+.. automodule:: sales.migrations.0016_settings_distance
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+sales.migrations.0017\_invoicenewtotal\_delivery module
+-------------------------------------------------------
+
+.. automodule:: sales.migrations.0017_invoicenewtotal_delivery
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+sales.migrations.0018\_auto\_20190907\_1858 module
+--------------------------------------------------
+
+.. automodule:: sales.migrations.0018_auto_20190907_1858
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+sales.migrations.0019\_auto\_20190907\_2357 module
+--------------------------------------------------
+
+.. automodule:: sales.migrations.0019_auto_20190907_2357
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+sales.migrations.0020\_settings\_lipa\_na\_mpesa\_passkey module
+----------------------------------------------------------------
+
+.. automodule:: sales.migrations.0020_settings_lipa_na_mpesa_passkey
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: sales.migrations
+   :members:
+   :undoc-members:
+   :show-inheritance:

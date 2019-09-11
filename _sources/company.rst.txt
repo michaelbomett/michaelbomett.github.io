@@ -1,0 +1,90 @@
+company package
+===============
+
+
+.. toctree::
+
+
+Submodules
+----------
+
+company.admin module
+--------------------
+
+.. automodule:: company.admin
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+company.api\_urls module
+------------------------
+
+.. automodule:: company.api_urls
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+company.apps module
+-------------------
+
+.. automodule:: company.apps
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+company.filters module
+----------------------
+
+.. automodule:: company.filters
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+company.models module
+---------------------
+
+.. automodule:: company.models
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+company.serializers module
+--------------------------
+
+.. automodule:: company.serializers
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+company.tests module
+--------------------
+
+.. automodule:: company.tests
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+company.urls module
+-------------------
+
+.. automodule:: company.urls
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+company.views module
+--------------------
+
+.. automodule:: company.views
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: company
+   :members:
+   :undoc-members:
+   :show-inheritance:

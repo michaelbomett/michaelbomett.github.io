@@ -1,0 +1,463 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>payments package &mdash; Techfactura 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="sales package" href="sales.html" />
+    <link rel="prev" title="mobile_app package" href="mobile_app.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Techfactura
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">mobile_app</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="company.html">company package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="devices.html">devices package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="homepage.html">homepage package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mobile_app.html">mobile_app package</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">payments package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-payments.admin">payments.admin module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-payments.apps">payments.apps module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-payments.models">payments.models module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-payments.serializers">payments.serializers module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-payments.tests">payments.tests module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-payments.urls">payments.urls module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-payments.views">payments.views module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-payments">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="sales.html">sales package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="users.html">users package</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Techfactura</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="modules.html">mobile_app</a> &raquo;</li>
+        
+      <li>payments package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/payments.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="payments-package">
+<h1>payments package<a class="headerlink" href="#payments-package" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-payments.admin">
+<span id="payments-admin-module"></span><h2>payments.admin module<a class="headerlink" href="#module-payments.admin" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="payments.admin.LNMOnlineAdmin">
+<em class="property">class </em><code class="sig-prename descclassname">payments.admin.</code><code class="sig-name descname">LNMOnlineAdmin</code><span class="sig-paren">(</span><em class="sig-param">model</em>, <em class="sig-param">admin_site</em><span class="sig-paren">)</span><a class="headerlink" href="#payments.admin.LNMOnlineAdmin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.contrib.admin.options.ModelAdmin</span></code></p>
+<p>List of information to display in admin page</p>
+<dl class="attribute">
+<dt id="payments.admin.LNMOnlineAdmin.list_display">
+<code class="sig-name descname">list_display</code><em class="property"> = ('input_OriginalConversationID', 'input_ThirdPartyReference', 'input_TransactionID', 'input_ResultCode', 'input_ResultDesc')</em><a class="headerlink" href="#payments.admin.LNMOnlineAdmin.list_display" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="payments.admin.LNMOnlineAdmin.media">
+<em class="property">property </em><code class="sig-name descname">media</code><a class="headerlink" href="#payments.admin.LNMOnlineAdmin.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-payments.apps">
+<span id="payments-apps-module"></span><h2>payments.apps module<a class="headerlink" href="#module-payments.apps" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="payments.apps.PaymentsConfig">
+<em class="property">class </em><code class="sig-prename descclassname">payments.apps.</code><code class="sig-name descname">PaymentsConfig</code><span class="sig-paren">(</span><em class="sig-param">app_name</em>, <em class="sig-param">app_module</em><span class="sig-paren">)</span><a class="headerlink" href="#payments.apps.PaymentsConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.apps.config.AppConfig</span></code></p>
+<dl class="attribute">
+<dt id="payments.apps.PaymentsConfig.name">
+<code class="sig-name descname">name</code><em class="property"> = 'payments'</em><a class="headerlink" href="#payments.apps.PaymentsConfig.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-payments.models">
+<span id="payments-models-module"></span><h2>payments.models module<a class="headerlink" href="#module-payments.models" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="payments.models.LNM">
+<em class="property">class </em><code class="sig-prename descclassname">payments.models.</code><code class="sig-name descname">LNM</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#payments.models.LNM" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.models.base.Model</span></code></p>
+<p>Model for saving callback transaction information</p>
+<dl class="exception">
+<dt id="payments.models.LNM.DoesNotExist">
+<em class="property">exception </em><code class="sig-name descname">DoesNotExist</code><a class="headerlink" href="#payments.models.LNM.DoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.core.exceptions.ObjectDoesNotExist</span></code></p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="payments.models.LNM.MultipleObjectsReturned">
+<em class="property">exception </em><code class="sig-name descname">MultipleObjectsReturned</code><a class="headerlink" href="#payments.models.LNM.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.core.exceptions.MultipleObjectsReturned</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="payments.models.LNM.id">
+<code class="sig-name descname">id</code><a class="headerlink" href="#payments.models.LNM.id" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="payments.models.LNM.input_OriginalConversationID">
+<code class="sig-name descname">input_OriginalConversationID</code><a class="headerlink" href="#payments.models.LNM.input_OriginalConversationID" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="payments.models.LNM.input_ResultCode">
+<code class="sig-name descname">input_ResultCode</code><a class="headerlink" href="#payments.models.LNM.input_ResultCode" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="payments.models.LNM.input_ResultDesc">
+<code class="sig-name descname">input_ResultDesc</code><a class="headerlink" href="#payments.models.LNM.input_ResultDesc" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="payments.models.LNM.input_ThirdPartyReference">
+<code class="sig-name descname">input_ThirdPartyReference</code><a class="headerlink" href="#payments.models.LNM.input_ThirdPartyReference" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="payments.models.LNM.input_TransactionID">
+<code class="sig-name descname">input_TransactionID</code><a class="headerlink" href="#payments.models.LNM.input_TransactionID" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="payments.models.LNM.objects">
+<code class="sig-name descname">objects</code><em class="property"> = &lt;django.db.models.manager.Manager object&gt;</em><a class="headerlink" href="#payments.models.LNM.objects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="payments.models.update_receipt">
+<code class="sig-prename descclassname">payments.models.</code><code class="sig-name descname">update_receipt</code><span class="sig-paren">(</span><em class="sig-param">sender</em>, <em class="sig-param">instance</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#payments.models.update_receipt" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-payments.serializers">
+<span id="payments-serializers-module"></span><h2>payments.serializers module<a class="headerlink" href="#module-payments.serializers" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="payments.serializers.LNMOnlineSerializer">
+<em class="property">class </em><code class="sig-prename descclassname">payments.serializers.</code><code class="sig-name descname">LNMOnlineSerializer</code><span class="sig-paren">(</span><em class="sig-param">instance=None</em>, <em class="sig-param">data=&lt;class 'rest_framework.fields.empty'&gt;</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#payments.serializers.LNMOnlineSerializer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">rest_framework.serializers.ModelSerializer</span></code></p>
+<dl class="class">
+<dt id="payments.serializers.LNMOnlineSerializer.Meta">
+<em class="property">class </em><code class="sig-name descname">Meta</code><a class="headerlink" href="#payments.serializers.LNMOnlineSerializer.Meta" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="attribute">
+<dt id="payments.serializers.LNMOnlineSerializer.Meta.fields">
+<code class="sig-name descname">fields</code><em class="property"> = '__all__'</em><a class="headerlink" href="#payments.serializers.LNMOnlineSerializer.Meta.fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="payments.serializers.LNMOnlineSerializer.Meta.model">
+<code class="sig-name descname">model</code><a class="headerlink" href="#payments.serializers.LNMOnlineSerializer.Meta.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <a class="reference internal" href="#payments.models.LNM" title="payments.models.LNM"><code class="xref py py-class docutils literal notranslate"><span class="pre">payments.models.LNM</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-payments.tests">
+<span id="payments-tests-module"></span><h2>payments.tests module<a class="headerlink" href="#module-payments.tests" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-payments.urls">
+<span id="payments-urls-module"></span><h2>payments.urls module<a class="headerlink" href="#module-payments.urls" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="payments.urls.path">
+<code class="sig-prename descclassname">payments.urls.</code><code class="sig-name descname">path</code><span class="sig-paren">(</span><em class="sig-param">route</em>, <em class="sig-param">view</em>, <em class="sig-param">kwargs=None</em>, <em class="sig-param">name=None</em>, <em class="sig-param">*</em>, <em class="sig-param">Pattern=&lt;class 'django.urls.resolvers.RoutePattern'&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#payments.urls.path" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-payments.views">
+<span id="payments-views-module"></span><h2>payments.views module<a class="headerlink" href="#module-payments.views" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="payments.views.B2CQueryView">
+<em class="property">class </em><code class="sig-prename descclassname">payments.views.</code><code class="sig-name descname">B2CQueryView</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#payments.views.B2CQueryView" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.contrib.auth.mixins.LoginRequiredMixin</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">django.contrib.auth.mixins.UserPassesTestMixin</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.base.View</span></code></p>
+<p>View rendered to allow company to query mobile transaction history</p>
+<dl class="method">
+<dt id="payments.views.B2CQueryView.get">
+<code class="sig-name descname">get</code><span class="sig-paren">(</span><em class="sig-param">request</em>, <em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#payments.views.B2CQueryView.get" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="payments.views.B2CQueryView.post">
+<code class="sig-name descname">post</code><span class="sig-paren">(</span><em class="sig-param">request</em>, <em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#payments.views.B2CQueryView.post" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="payments.views.B2CQueryView.template_name">
+<code class="sig-name descname">template_name</code><em class="property"> = 'payments/b2c_query.html'</em><a class="headerlink" href="#payments.views.B2CQueryView.template_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="payments.views.B2CQueryView.test_func">
+<code class="sig-name descname">test_func</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#payments.views.B2CQueryView.test_func" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="payments.views.B2CReverse">
+<em class="property">class </em><code class="sig-prename descclassname">payments.views.</code><code class="sig-name descname">B2CReverse</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#payments.views.B2CReverse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.contrib.auth.mixins.LoginRequiredMixin</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">django.contrib.auth.mixins.UserPassesTestMixin</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.base.View</span></code></p>
+<p>View rendered to allow a company to reverse mobile money transaction</p>
+<dl class="method">
+<dt id="payments.views.B2CReverse.get">
+<code class="sig-name descname">get</code><span class="sig-paren">(</span><em class="sig-param">request</em>, <em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#payments.views.B2CReverse.get" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="payments.views.B2CReverse.post">
+<code class="sig-name descname">post</code><span class="sig-paren">(</span><em class="sig-param">request</em>, <em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#payments.views.B2CReverse.post" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="payments.views.B2CReverse.template_name">
+<code class="sig-name descname">template_name</code><em class="property"> = 'payments/b2c_reverse.html'</em><a class="headerlink" href="#payments.views.B2CReverse.template_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="payments.views.B2CReverse.test_func">
+<code class="sig-name descname">test_func</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#payments.views.B2CReverse.test_func" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="payments.views.LNMCallbackUrlAPIView">
+<em class="property">class </em><code class="sig-prename descclassname">payments.views.</code><code class="sig-name descname">LNMCallbackUrlAPIView</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#payments.views.LNMCallbackUrlAPIView" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">rest_framework.generics.CreateAPIView</span></code></p>
+<p>Callback URL for verifying transactions</p>
+<dl class="method">
+<dt id="payments.views.LNMCallbackUrlAPIView.create">
+<code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param">request</em>, <em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#payments.views.LNMCallbackUrlAPIView.create" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="payments.views.LNMCallbackUrlAPIView.permission_classes">
+<code class="sig-name descname">permission_classes</code><em class="property"> = [&lt;class 'rest_framework.permissions.AllowAny'&gt;]</em><a class="headerlink" href="#payments.views.LNMCallbackUrlAPIView.permission_classes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="payments.views.LNMCallbackUrlAPIView.queryset">
+<code class="sig-name descname">queryset</code><em class="property"> = &lt;QuerySet []&gt;</em><a class="headerlink" href="#payments.views.LNMCallbackUrlAPIView.queryset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="payments.views.LNMCallbackUrlAPIView.serializer_class">
+<code class="sig-name descname">serializer_class</code><a class="headerlink" href="#payments.views.LNMCallbackUrlAPIView.serializer_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <a class="reference internal" href="#payments.serializers.LNMOnlineSerializer" title="payments.serializers.LNMOnlineSerializer"><code class="xref py py-class docutils literal notranslate"><span class="pre">payments.serializers.LNMOnlineSerializer</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-payments">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-payments" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="sales.html" class="btn btn-neutral float-right" title="sales package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="mobile_app.html" class="btn btn-neutral float-left" title="mobile_app package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Michael Bomett
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

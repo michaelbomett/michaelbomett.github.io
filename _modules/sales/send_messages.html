@@ -1,0 +1,564 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>sales.send_messages &mdash; Techfactura 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Techfactura
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">mobile_app</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Techfactura</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>sales.send_messages</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for sales.send_messages</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">twilio.rest</span> <span class="k">import</span> <span class="n">Client</span>
+<span class="kn">from</span> <span class="nn">django.contrib</span> <span class="k">import</span> <span class="n">messages</span>
+<span class="kn">from</span> <span class="nn">django.utils.translation</span> <span class="k">import</span> <span class="n">gettext</span> <span class="k">as</span> <span class="n">_</span>
+<span class="kn">from</span> <span class="nn">django.core.mail</span> <span class="k">import</span> <span class="n">send_mail</span><span class="p">,</span> <span class="n">BadHeaderError</span>
+<span class="kn">from</span> <span class="nn">django.template</span> <span class="k">import</span> <span class="n">loader</span>
+<span class="kn">from</span> <span class="nn">allauth.account.admin</span> <span class="k">import</span> <span class="n">EmailAddress</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="k">import</span> <span class="n">keys</span>
+
+
+<span class="n">account_sid</span> <span class="o">=</span> <span class="n">keys</span><span class="o">.</span><span class="n">ACCOUNT_SID</span>
+<span class="n">auth_token</span> <span class="o">=</span> <span class="n">keys</span><span class="o">.</span><span class="n">AUTH_TOKEN</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">(</span><span class="n">account_sid</span><span class="p">,</span> <span class="n">auth_token</span><span class="p">)</span>
+<span class="n">from_email</span> <span class="o">=</span> <span class="n">keys</span><span class="o">.</span><span class="n">FROM_EMAIL</span>
+
+
+<div class="viewcode-block" id="send_payment_messages"><a class="viewcode-back" href="../../sales.html#sales.send_messages.send_payment_messages">[docs]</a><span class="k">def</span> <span class="nf">send_payment_messages</span><span class="p">(</span><span class="n">payinvoice</span><span class="p">,</span> <span class="n">paytype</span><span class="p">,</span> <span class="n">amount</span><span class="p">,</span> <span class="n">reference</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; send sms and email payment notifications&quot;&quot;&quot;</span>
+
+    <span class="n">company</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">payinvoice</span><span class="o">.</span><span class="n">company</span><span class="p">)</span>
+    <span class="n">invoice_id</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">payinvoice</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+    <span class="n">invoice_total</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">payinvoice</span><span class="o">.</span><span class="n">total</span><span class="p">)</span>
+    <span class="n">supplier_email</span> <span class="o">=</span> <span class="n">payinvoice</span><span class="o">.</span><span class="n">created_by</span><span class="o">.</span><span class="n">email</span>
+    <span class="n">supplier</span> <span class="o">=</span> <span class="n">payinvoice</span><span class="o">.</span><span class="n">created_by</span>
+    <span class="n">payment_pk</span> <span class="o">=</span> <span class="n">payinvoice</span><span class="o">.</span><span class="n">id</span>
+    <span class="n">image_url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">payinvoice</span><span class="o">.</span><span class="n">company</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">url</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">supplier</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">sms_notifications</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">payinvoice</span><span class="o">.</span><span class="n">created_by</span><span class="o">.</span><span class="n">profile</span><span class="o">.</span><span class="n">phone_verified</span><span class="p">:</span>
+            <span class="n">phone</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">payinvoice</span><span class="o">.</span><span class="n">created_by</span><span class="o">.</span><span class="n">profile</span><span class="o">.</span><span class="n">phone_verified</span><span class="p">)</span>
+
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">sms</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">messages</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+                    <span class="n">from_</span><span class="o">=</span><span class="n">keys</span><span class="o">.</span><span class="n">FROM_PHONE</span><span class="p">,</span>
+                    <span class="n">body</span><span class="o">=</span><span class="n">_</span><span class="p">(</span><span class="s1">&#39;Company&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;: &#39;</span> <span class="o">+</span> <span class="n">company</span> <span class="o">+</span> <span class="s1">&#39; </span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Invoice&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; No: &#39;</span> <span class="o">+</span> <span class="n">invoice_id</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span>
+                          <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Payment Type&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;: &#39;</span> <span class="o">+</span> <span class="n">paytype</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Amount&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;: &#39;</span> <span class="o">+</span>
+                          <span class="n">amount</span> <span class="o">+</span> <span class="s1">&#39; </span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Reference&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;: &#39;</span> <span class="o">+</span> <span class="n">reference</span><span class="p">,</span>
+                    <span class="n">to</span><span class="o">=</span><span class="n">phone</span>
+                <span class="p">)</span>
+                <span class="n">messages</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;SMS sent: &#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">sms</span><span class="o">.</span><span class="n">status</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+                <span class="n">messages</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Error: SMS was not sent&#39;</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">messages</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Supplier has no verified Phone number&#39;</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="n">supplier</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">email_notifications</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">EmailAddress</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">supplier</span><span class="p">,</span> <span class="n">verified</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+            <span class="n">html_message</span> <span class="o">=</span> <span class="n">loader</span><span class="o">.</span><span class="n">render_to_string</span><span class="p">(</span>
+                <span class="s1">&#39;sales/payment_email.html&#39;</span><span class="p">,</span>
+                <span class="p">{</span>
+                    <span class="s1">&#39;user_name&#39;</span><span class="p">:</span> <span class="n">supplier</span><span class="o">.</span><span class="n">profile</span><span class="p">,</span>
+                    <span class="s1">&#39;company&#39;</span><span class="p">:</span> <span class="n">company</span><span class="p">,</span>
+                    <span class="s1">&#39;invoice_no&#39;</span><span class="p">:</span> <span class="n">invoice_id</span><span class="p">,</span>
+                    <span class="s1">&#39;payment_type&#39;</span><span class="p">:</span> <span class="n">paytype</span><span class="p">,</span>
+                    <span class="s1">&#39;payment_value&#39;</span><span class="p">:</span> <span class="n">amount</span><span class="p">,</span>
+                    <span class="s1">&#39;invoice_total&#39;</span><span class="p">:</span> <span class="n">invoice_total</span><span class="p">,</span>
+                    <span class="s1">&#39;reference&#39;</span><span class="p">:</span> <span class="n">reference</span><span class="p">,</span>
+                    <span class="s1">&#39;payment_pk&#39;</span><span class="p">:</span> <span class="n">payment_pk</span><span class="p">,</span>
+                    <span class="s1">&#39;image_url&#39;</span><span class="p">:</span> <span class="n">image_url</span>
+                <span class="p">}</span>
+            <span class="p">)</span>
+
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">send_mail</span><span class="p">(</span><span class="n">_</span><span class="p">(</span><span class="s1">&#39;Payment from &#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">company</span><span class="p">,</span>
+                          <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Invoice Number: &#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">invoice_id</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Invoice Amount: &#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">invoice_total</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Payment type: &#39;</span><span class="p">)</span> <span class="o">+</span>
+                          <span class="n">paytype</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Payment value: &#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">amount</span> <span class="o">+</span>
+                          <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Reference: &#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">reference</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;This is an automatic email&#39;</span><span class="p">),</span>
+                          <span class="n">from_email</span><span class="p">,</span>
+                          <span class="p">[</span><span class="n">supplier_email</span><span class="p">],</span>
+                          <span class="n">fail_silently</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                          <span class="n">html_message</span><span class="o">=</span><span class="n">html_message</span>
+                          <span class="p">)</span>
+                <span class="n">messages</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Email sent successfully&#39;</span><span class="p">))</span>
+            <span class="k">except</span> <span class="n">BadHeaderError</span><span class="p">:</span>
+                <span class="n">messages</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Error: Email was not sent&#39;</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">messages</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Supplier has no verified Email Address&#39;</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="send_invoice_messages"><a class="viewcode-back" href="../../sales.html#sales.send_messages.send_invoice_messages">[docs]</a><span class="k">def</span> <span class="nf">send_invoice_messages</span><span class="p">(</span><span class="n">payinvoice</span><span class="p">,</span> <span class="n">description</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; send sms and email Invoice notifications&quot;&quot;&quot;</span>
+
+    <span class="n">supplier</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">payinvoice</span><span class="o">.</span><span class="n">created_by</span><span class="o">.</span><span class="n">profile</span><span class="p">)</span>
+    <span class="n">supplier_company</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="k">if</span> <span class="n">payinvoice</span><span class="o">.</span><span class="n">created_by</span><span class="o">.</span><span class="n">profile</span><span class="o">.</span><span class="n">my_company_name</span><span class="p">:</span>
+        <span class="n">supplier_company</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">payinvoice</span><span class="o">.</span><span class="n">created_by</span><span class="o">.</span><span class="n">profile</span><span class="o">.</span><span class="n">my_company_name</span><span class="p">)</span>
+    <span class="n">invoice_total</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">payinvoice</span><span class="o">.</span><span class="n">total</span><span class="p">)</span>
+    <span class="n">invoice_id</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">payinvoice</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+    <span class="n">company</span> <span class="o">=</span> <span class="n">payinvoice</span><span class="o">.</span><span class="n">company</span><span class="o">.</span><span class="n">company_name</span>
+    <span class="n">comp_email</span> <span class="o">=</span> <span class="n">payinvoice</span><span class="o">.</span><span class="n">company</span><span class="o">.</span><span class="n">email</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">payinvoice</span><span class="o">.</span><span class="n">company</span><span class="o">.</span><span class="n">user</span>
+    <span class="n">invoice_pk</span> <span class="o">=</span> <span class="n">payinvoice</span><span class="o">.</span><span class="n">id</span>
+    <span class="n">image_url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">payinvoice</span><span class="o">.</span><span class="n">created_by</span><span class="o">.</span><span class="n">profile</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">url</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">user</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">sms_notifications</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">payinvoice</span><span class="o">.</span><span class="n">company</span><span class="o">.</span><span class="n">phone</span><span class="p">:</span>
+            <span class="n">phone</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">payinvoice</span><span class="o">.</span><span class="n">company</span><span class="o">.</span><span class="n">phone</span><span class="p">)</span>
+
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">sms</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">messages</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+                    <span class="n">from_</span><span class="o">=</span><span class="n">keys</span><span class="o">.</span><span class="n">FROM_PHONE</span><span class="p">,</span>
+                    <span class="n">body</span><span class="o">=</span><span class="n">_</span><span class="p">(</span><span class="s1">&#39;Invoice from &#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">supplier</span> <span class="o">+</span> <span class="s1">&#39; </span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">supplier_company</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Invoice&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; No: &#39;</span> <span class="o">+</span>
+                          <span class="n">invoice_id</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Amount&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;: &#39;</span> <span class="o">+</span> <span class="n">invoice_total</span> <span class="o">+</span> <span class="s1">&#39; </span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Description&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;: &#39;</span> <span class="o">+</span>
+                          <span class="n">description</span><span class="p">,</span>
+                    <span class="n">to</span><span class="o">=</span><span class="n">phone</span>
+                <span class="p">)</span>
+                <span class="n">messages</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;SMS sent: &#39;</span><span class="p">)</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">sms</span><span class="o">.</span><span class="n">status</span><span class="p">))</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+                <span class="n">messages</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Error: SMS was not sent&#39;</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">messages</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Company has no verified Phone number&#39;</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="n">user</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">email_notifications</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">EmailAddress</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">,</span> <span class="n">email</span><span class="o">=</span><span class="n">comp_email</span><span class="p">,</span> <span class="n">verified</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+            <span class="n">html_message</span> <span class="o">=</span> <span class="n">loader</span><span class="o">.</span><span class="n">render_to_string</span><span class="p">(</span>
+                <span class="s1">&#39;sales/invoice_new_email.html&#39;</span><span class="p">,</span>
+                <span class="p">{</span>
+                    <span class="s1">&#39;user_name&#39;</span><span class="p">:</span> <span class="n">company</span><span class="p">,</span>
+                    <span class="s1">&#39;seller&#39;</span><span class="p">:</span> <span class="n">supplier</span><span class="p">,</span>
+                    <span class="s1">&#39;supplier_company&#39;</span><span class="p">:</span> <span class="n">supplier_company</span><span class="p">,</span>
+                    <span class="s1">&#39;invoice_no&#39;</span><span class="p">:</span> <span class="n">invoice_id</span><span class="p">,</span>
+                    <span class="s1">&#39;invoice_total&#39;</span><span class="p">:</span> <span class="n">invoice_total</span><span class="p">,</span>
+                    <span class="s1">&#39;description&#39;</span><span class="p">:</span> <span class="n">description</span><span class="p">,</span>
+                    <span class="s1">&#39;invoice_pk&#39;</span><span class="p">:</span> <span class="n">invoice_pk</span><span class="p">,</span>
+                    <span class="s1">&#39;image_url&#39;</span><span class="p">:</span> <span class="n">image_url</span>
+                <span class="p">}</span>
+            <span class="p">)</span>
+
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">send_mail</span><span class="p">(</span><span class="n">_</span><span class="p">(</span><span class="s1">&#39;Invoice from &#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">supplier</span><span class="p">,</span>
+                          <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Hello &#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">company</span> <span class="o">+</span> <span class="s1">&#39; </span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Invoice Number: &#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">invoice_id</span> <span class="o">+</span> <span class="s1">&#39; </span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Amount: &#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">invoice_total</span> <span class="o">+</span> <span class="s1">&#39; </span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Description: &#39;</span><span class="p">)</span> <span class="o">+</span>
+                          <span class="n">description</span> <span class="o">+</span> <span class="s1">&#39; </span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;This is an automatic email&#39;</span><span class="p">),</span>
+                          <span class="n">from_email</span><span class="p">,</span>
+                          <span class="p">[</span><span class="n">comp_email</span><span class="p">],</span>
+                          <span class="n">fail_silently</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                          <span class="n">html_message</span><span class="o">=</span><span class="n">html_message</span>
+                          <span class="p">)</span>
+                <span class="n">messages</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Email sent successfully&#39;</span><span class="p">))</span>
+            <span class="k">except</span> <span class="n">BadHeaderError</span><span class="p">:</span>
+                <span class="n">messages</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Error: Email was not sent&#39;</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">messages</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Company has no verified Email Address&#39;</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="send_welcome_email"><a class="viewcode-back" href="../../sales.html#sales.send_messages.send_welcome_email">[docs]</a><span class="k">def</span> <span class="nf">send_welcome_email</span><span class="p">(</span><span class="n">profile</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">u_message</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; send email phone verified notifications&quot;&quot;&quot;</span>
+
+    <span class="n">user_email</span> <span class="o">=</span> <span class="n">profile</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">email</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">profile</span><span class="o">.</span><span class="n">user</span>
+    <span class="n">user_name</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">profile</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">username</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">EmailAddress</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">,</span> <span class="n">verified</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+        <span class="n">html_message</span> <span class="o">=</span> <span class="n">loader</span><span class="o">.</span><span class="n">render_to_string</span><span class="p">(</span>
+            <span class="s1">&#39;users/phone_validation_email.html&#39;</span><span class="p">,</span>
+            <span class="p">{</span>
+                <span class="s1">&#39;user&#39;</span><span class="p">:</span> <span class="n">profile</span><span class="p">,</span>
+                <span class="s1">&#39;user_name&#39;</span><span class="p">:</span> <span class="n">user_name</span><span class="p">,</span>
+                <span class="s1">&#39;message&#39;</span><span class="p">:</span> <span class="n">u_message</span><span class="p">,</span>
+
+            <span class="p">}</span>
+        <span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">send_mail</span><span class="p">(</span><span class="n">_</span><span class="p">(</span><span class="s1">&#39;Welcome to Techfactura&#39;</span><span class="p">),</span>
+                      <span class="nb">str</span><span class="p">(</span><span class="n">profile</span><span class="p">)</span> <span class="o">+</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;, Your phone number has been successfully verified.&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span>
+                      <span class="n">_</span><span class="p">(</span><span class="s1">&#39;This is an automatic email&#39;</span><span class="p">),</span>
+                      <span class="n">from_email</span><span class="p">,</span>
+                      <span class="p">[</span><span class="n">user_email</span><span class="p">],</span>
+                      <span class="n">fail_silently</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                      <span class="n">html_message</span><span class="o">=</span><span class="n">html_message</span>
+                      <span class="p">)</span>
+            <span class="n">messages</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Email sent successfully&#39;</span><span class="p">))</span>
+        <span class="k">except</span> <span class="n">BadHeaderError</span><span class="p">:</span>
+            <span class="n">messages</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Error: Email was not sent&#39;</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">messages</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Verify Your E-mail Address&#39;</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="send_verification_sms"><a class="viewcode-back" href="../../sales.html#sales.send_messages.send_verification_sms">[docs]</a><span class="k">def</span> <span class="nf">send_verification_sms</span><span class="p">(</span><span class="n">phone</span><span class="p">,</span> <span class="n">passcode</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; send sms verification code notifications&quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">sms</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">messages</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+            <span class="n">from_</span><span class="o">=</span><span class="n">keys</span><span class="o">.</span><span class="n">FROM_PHONE</span><span class="p">,</span>
+            <span class="n">body</span><span class="o">=</span><span class="n">_</span><span class="p">(</span><span class="s1">&#39;Your TechFactura verification Code is: &#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">passcode</span><span class="p">,</span>
+            <span class="n">to</span><span class="o">=</span><span class="n">phone</span>
+        <span class="p">)</span>
+        <span class="n">messages</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;SMS sent: &#39;</span><span class="p">)</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">sms</span><span class="o">.</span><span class="n">status</span><span class="p">))</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+        <span class="n">messages</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Error: SMS was not sent&#39;</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="send_supplier_application_messages"><a class="viewcode-back" href="../../sales.html#sales.send_messages.send_supplier_application_messages">[docs]</a><span class="k">def</span> <span class="nf">send_supplier_application_messages</span><span class="p">(</span><span class="n">supplier_profile</span><span class="p">,</span> <span class="n">company_profile</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; send sms and email supplier application notifications&quot;&quot;&quot;</span>
+
+    <span class="n">supplier</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">supplier_profile</span><span class="p">)</span>
+    <span class="n">supplier_company</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="k">if</span> <span class="n">supplier_profile</span><span class="o">.</span><span class="n">my_company_name</span><span class="p">:</span>
+        <span class="n">supplier_company</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">supplier_profile</span><span class="o">.</span><span class="n">my_company_name</span><span class="p">)</span>
+    <span class="n">company</span> <span class="o">=</span> <span class="n">company_profile</span><span class="o">.</span><span class="n">company_name</span>
+    <span class="n">comp_email</span> <span class="o">=</span> <span class="n">company_profile</span><span class="o">.</span><span class="n">email</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">company_profile</span><span class="o">.</span><span class="n">user</span>
+    <span class="n">supplier_address</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">supplier_profile</span><span class="o">.</span><span class="n">address</span><span class="p">)</span>
+    <span class="n">supplier_phone</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">supplier_profile</span><span class="o">.</span><span class="n">phone</span><span class="p">)</span>
+    <span class="n">supplier_email</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">supplier_profile</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">email</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">user</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">sms_notifications</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">company_profile</span><span class="o">.</span><span class="n">phone</span><span class="p">:</span>
+            <span class="n">phone</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">company_profile</span><span class="o">.</span><span class="n">phone</span><span class="p">)</span>
+
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">sms</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">messages</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+                    <span class="n">from_</span><span class="o">=</span><span class="n">keys</span><span class="o">.</span><span class="n">FROM_PHONE</span><span class="p">,</span>
+                    <span class="n">body</span><span class="o">=</span><span class="n">_</span><span class="p">(</span><span class="s1">&#39;New Supplier Application&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Supplier: &#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">supplier</span> <span class="o">+</span> <span class="s1">&#39; </span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">supplier_company</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Address: &#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">supplier_address</span>
+                            <span class="o">+</span> <span class="s1">&#39; </span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Phone&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;: &#39;</span> <span class="o">+</span> <span class="n">supplier_phone</span> <span class="o">+</span> <span class="s1">&#39; </span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Email&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;: &#39;</span> <span class="o">+</span> <span class="n">supplier_email</span><span class="p">,</span>
+                    <span class="n">to</span><span class="o">=</span><span class="n">phone</span>
+                <span class="p">)</span>
+                <span class="n">messages</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;SMS sent: &#39;</span><span class="p">)</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">sms</span><span class="o">.</span><span class="n">status</span><span class="p">))</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+                <span class="n">messages</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Error: SMS was not sent&#39;</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">messages</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Company has no verified Phone number&#39;</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="n">user</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">email_notifications</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">EmailAddress</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">,</span> <span class="n">email</span><span class="o">=</span><span class="n">comp_email</span><span class="p">,</span> <span class="n">verified</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+            <span class="n">html_message</span> <span class="o">=</span> <span class="n">loader</span><span class="o">.</span><span class="n">render_to_string</span><span class="p">(</span>
+                <span class="s1">&#39;company/supplier_application_email.html&#39;</span><span class="p">,</span>
+                <span class="p">{</span>
+                    <span class="s1">&#39;user_name&#39;</span><span class="p">:</span> <span class="n">company</span><span class="p">,</span>
+                    <span class="s1">&#39;seller&#39;</span><span class="p">:</span> <span class="n">supplier</span><span class="p">,</span>
+                    <span class="s1">&#39;supplier_company&#39;</span><span class="p">:</span> <span class="n">supplier_company</span><span class="p">,</span>
+                    <span class="s1">&#39;supplier_address&#39;</span><span class="p">:</span> <span class="n">supplier_address</span><span class="p">,</span>
+                    <span class="s1">&#39;supplier_phone&#39;</span><span class="p">:</span> <span class="n">supplier_phone</span><span class="p">,</span>
+                    <span class="s1">&#39;supplier_email&#39;</span><span class="p">:</span> <span class="n">supplier_email</span><span class="p">,</span>
+                    <span class="s1">&#39;company_profile_id&#39;</span><span class="p">:</span> <span class="n">company_profile</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+                    <span class="s1">&#39;supplier_image_url&#39;</span><span class="p">:</span> <span class="n">supplier_profile</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">url</span>
+                <span class="p">}</span>
+            <span class="p">)</span>
+
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">send_mail</span><span class="p">(</span><span class="n">_</span><span class="p">(</span><span class="s1">&#39;Supplier Application From &#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">supplier</span><span class="p">,</span>
+                          <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Hello &#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">company</span> <span class="o">+</span> <span class="s1">&#39; </span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;A New supplier applied to your Company&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; </span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Supplier Name: &#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">supplier</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">supplier_company</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Supplier Address: &#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">supplier_address</span> <span class="o">+</span> <span class="s1">&#39; </span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Supplier Phone: &#39;</span><span class="p">)</span> <span class="o">+</span>
+                          <span class="n">supplier_phone</span> <span class="o">+</span> <span class="s1">&#39; </span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Supplier Email: &#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">supplier_email</span> <span class="o">+</span> <span class="s1">&#39; </span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;This is an automatic email&#39;</span><span class="p">),</span>
+                          <span class="n">from_email</span><span class="p">,</span>
+                          <span class="p">[</span><span class="n">comp_email</span><span class="p">],</span>
+                          <span class="n">fail_silently</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                          <span class="n">html_message</span><span class="o">=</span><span class="n">html_message</span>
+                          <span class="p">)</span>
+                <span class="n">messages</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Email sent successfully&#39;</span><span class="p">))</span>
+            <span class="k">except</span> <span class="n">BadHeaderError</span><span class="p">:</span>
+                <span class="n">messages</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Error: Email was not sent&#39;</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">messages</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Company has no verified Email Address&#39;</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="send_supplier_approve_decline_messages"><a class="viewcode-back" href="../../sales.html#sales.send_messages.send_supplier_approve_decline_messages">[docs]</a><span class="k">def</span> <span class="nf">send_supplier_approve_decline_messages</span><span class="p">(</span><span class="n">supplier_profile</span><span class="p">,</span> <span class="n">company_profile</span><span class="p">,</span> <span class="n">application_status</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; send sms and email supplier approval/decline notifications&quot;&quot;&quot;</span>
+
+    <span class="n">supplier</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">supplier_profile</span><span class="p">)</span>
+    <span class="n">company</span> <span class="o">=</span> <span class="n">company_profile</span><span class="o">.</span><span class="n">company_name</span>
+    <span class="n">comp_email</span> <span class="o">=</span> <span class="n">company_profile</span><span class="o">.</span><span class="n">email</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">supplier_profile</span><span class="o">.</span><span class="n">user</span>
+    <span class="n">company_address</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">company_profile</span><span class="o">.</span><span class="n">address</span><span class="p">)</span>
+    <span class="n">company_phone</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">company_profile</span><span class="o">.</span><span class="n">phone</span><span class="p">)</span>
+    <span class="n">supplier_email</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">supplier_profile</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">email</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">user</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">sms_notifications</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">supplier_profile</span><span class="o">.</span><span class="n">phone_verified</span><span class="p">:</span>
+            <span class="n">phone</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">supplier_profile</span><span class="o">.</span><span class="n">phone_verified</span><span class="p">)</span>
+
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">sms</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">messages</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+                    <span class="n">from_</span><span class="o">=</span><span class="n">keys</span><span class="o">.</span><span class="n">FROM_PHONE</span><span class="p">,</span>
+                    <span class="n">body</span><span class="o">=</span><span class="n">_</span><span class="p">(</span><span class="s1">&#39;Application to supply &#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">company</span> <span class="o">+</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39; has been &#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">application_status</span><span class="p">,</span>
+                    <span class="n">to</span><span class="o">=</span><span class="n">phone</span>
+                <span class="p">)</span>
+                <span class="n">messages</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;SMS sent: &#39;</span><span class="p">)</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">sms</span><span class="o">.</span><span class="n">status</span><span class="p">))</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+                <span class="n">messages</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Error: SMS was not sent&#39;</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">messages</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Supplier has no verified Phone number&#39;</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="n">user</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">email_notifications</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">EmailAddress</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">,</span> <span class="n">email</span><span class="o">=</span><span class="n">supplier_email</span><span class="p">,</span> <span class="n">verified</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+            <span class="n">html_message</span> <span class="o">=</span> <span class="n">loader</span><span class="o">.</span><span class="n">render_to_string</span><span class="p">(</span>
+                <span class="s1">&#39;company/supplier_approve_decline_email.html&#39;</span><span class="p">,</span>
+                <span class="p">{</span>
+                    <span class="s1">&#39;user_name&#39;</span><span class="p">:</span> <span class="n">supplier</span><span class="p">,</span>
+                    <span class="s1">&#39;company&#39;</span><span class="p">:</span> <span class="n">company</span><span class="p">,</span>
+                    <span class="s1">&#39;company_address&#39;</span><span class="p">:</span> <span class="n">company_address</span><span class="p">,</span>
+                    <span class="s1">&#39;company_phone&#39;</span><span class="p">:</span> <span class="n">company_phone</span><span class="p">,</span>
+                    <span class="s1">&#39;company_email&#39;</span><span class="p">:</span> <span class="n">comp_email</span><span class="p">,</span>
+                    <span class="s1">&#39;supplier_profile_id&#39;</span><span class="p">:</span> <span class="n">supplier_profile</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+                    <span class="s1">&#39;company_image_url&#39;</span><span class="p">:</span> <span class="n">company_profile</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">url</span><span class="p">,</span>
+                    <span class="s1">&#39;application_status&#39;</span><span class="p">:</span> <span class="n">application_status</span>
+                <span class="p">}</span>
+            <span class="p">)</span>
+
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">send_mail</span><span class="p">(</span><span class="n">_</span><span class="p">(</span><span class="s1">&#39;Application to supply &#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">company</span><span class="p">,</span>
+                          <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Hello &#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">supplier</span> <span class="o">+</span> <span class="s1">&#39; </span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Your application to supply &#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">company</span> <span class="o">+</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39; has been &#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">application_status</span> <span class="o">+</span> <span class="s1">&#39; </span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;This is an automatic email&#39;</span><span class="p">),</span>
+                          <span class="n">from_email</span><span class="p">,</span>
+                          <span class="p">[</span><span class="n">supplier_email</span><span class="p">],</span>
+                          <span class="n">fail_silently</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                          <span class="n">html_message</span><span class="o">=</span><span class="n">html_message</span>
+                          <span class="p">)</span>
+                <span class="n">messages</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Email sent successfully&#39;</span><span class="p">))</span>
+            <span class="k">except</span> <span class="n">BadHeaderError</span><span class="p">:</span>
+                <span class="n">messages</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Error: Email was not sent&#39;</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">messages</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Supplier has no verified Email Address&#39;</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="send_purchase_messages"><a class="viewcode-back" href="../../sales.html#sales.send_messages.send_purchase_messages">[docs]</a><span class="k">def</span> <span class="nf">send_purchase_messages</span><span class="p">(</span><span class="n">purchase_order</span><span class="p">,</span> <span class="n">description</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; send sms and email Purchase Order notifications&quot;&quot;&quot;</span>
+
+    <span class="n">company</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">purchase_order</span><span class="o">.</span><span class="n">company</span><span class="p">)</span>
+    <span class="n">order_total</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">purchase_order</span><span class="o">.</span><span class="n">total</span><span class="p">)</span>
+    <span class="n">order_id</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">purchase_order</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+    <span class="n">supplier</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">purchase_order</span><span class="o">.</span><span class="n">supplier</span><span class="o">.</span><span class="n">profile</span><span class="p">)</span>
+    <span class="n">supplier_email</span> <span class="o">=</span> <span class="n">purchase_order</span><span class="o">.</span><span class="n">supplier</span><span class="o">.</span><span class="n">email</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">purchase_order</span><span class="o">.</span><span class="n">supplier</span>
+    <span class="n">image_url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">purchase_order</span><span class="o">.</span><span class="n">company</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">url</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">user</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">sms_notifications</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">purchase_order</span><span class="o">.</span><span class="n">supplier</span><span class="o">.</span><span class="n">profile</span><span class="o">.</span><span class="n">phone_verified</span><span class="p">:</span>
+            <span class="n">phone</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">purchase_order</span><span class="o">.</span><span class="n">supplier</span><span class="o">.</span><span class="n">profile</span><span class="o">.</span><span class="n">phone_verified</span><span class="p">)</span>
+
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">sms</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">messages</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+                    <span class="n">from_</span><span class="o">=</span><span class="n">keys</span><span class="o">.</span><span class="n">FROM_PHONE</span><span class="p">,</span>
+                    <span class="n">body</span><span class="o">=</span><span class="n">_</span><span class="p">(</span><span class="s1">&#39;Purchase Order from &#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">company</span> <span class="o">+</span> <span class="s1">&#39; </span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Order&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; No: &#39;</span> <span class="o">+</span>
+                          <span class="n">order_id</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Amount&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;: &#39;</span> <span class="o">+</span> <span class="n">order_total</span> <span class="o">+</span> <span class="s1">&#39; </span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Comment&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;: &#39;</span> <span class="o">+</span>
+                          <span class="n">description</span><span class="p">,</span>
+                    <span class="n">to</span><span class="o">=</span><span class="n">phone</span>
+                <span class="p">)</span>
+                <span class="n">messages</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;SMS sent: &#39;</span><span class="p">)</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">sms</span><span class="o">.</span><span class="n">status</span><span class="p">))</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+                <span class="n">messages</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Error: SMS was not sent&#39;</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">messages</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Supplier has no verified Phone number&#39;</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="n">user</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">email_notifications</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">EmailAddress</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">,</span> <span class="n">email</span><span class="o">=</span><span class="n">supplier_email</span><span class="p">,</span> <span class="n">verified</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+            <span class="n">html_message</span> <span class="o">=</span> <span class="n">loader</span><span class="o">.</span><span class="n">render_to_string</span><span class="p">(</span>
+                <span class="s1">&#39;company/purchase_order_email.html&#39;</span><span class="p">,</span>
+                <span class="p">{</span>
+                    <span class="s1">&#39;user_name&#39;</span><span class="p">:</span> <span class="n">supplier</span><span class="p">,</span>
+                    <span class="s1">&#39;company&#39;</span><span class="p">:</span> <span class="n">company</span><span class="p">,</span>
+                    <span class="s1">&#39;order_id&#39;</span><span class="p">:</span> <span class="n">order_id</span><span class="p">,</span>
+                    <span class="s1">&#39;order_total&#39;</span><span class="p">:</span> <span class="n">order_total</span><span class="p">,</span>
+                    <span class="s1">&#39;order_pk&#39;</span><span class="p">:</span> <span class="n">purchase_order</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+                    <span class="s1">&#39;description&#39;</span><span class="p">:</span> <span class="n">description</span><span class="p">,</span>
+                    <span class="s1">&#39;image_url&#39;</span><span class="p">:</span> <span class="n">image_url</span>
+                <span class="p">}</span>
+            <span class="p">)</span>
+
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">send_mail</span><span class="p">(</span><span class="n">_</span><span class="p">(</span><span class="s1">&#39;Purchase Order from &#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">company</span><span class="p">,</span>
+                          <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Hello &#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">supplier</span> <span class="o">+</span> <span class="s1">&#39; </span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Order Number: &#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">order_id</span> <span class="o">+</span> <span class="s1">&#39; </span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Amount: &#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">order_total</span> <span class="o">+</span> <span class="s1">&#39; </span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Comment: &#39;</span><span class="p">)</span> <span class="o">+</span>
+                          <span class="n">description</span> <span class="o">+</span> <span class="s1">&#39; </span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;This is an automatic email&#39;</span><span class="p">),</span>
+                          <span class="n">from_email</span><span class="p">,</span>
+                          <span class="p">[</span><span class="n">supplier_email</span><span class="p">],</span>
+                          <span class="n">fail_silently</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                          <span class="n">html_message</span><span class="o">=</span><span class="n">html_message</span>
+                          <span class="p">)</span>
+                <span class="n">messages</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Email sent successfully&#39;</span><span class="p">))</span>
+            <span class="k">except</span> <span class="n">BadHeaderError</span><span class="p">:</span>
+                <span class="n">messages</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Error: Email was not sent&#39;</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">messages</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Supplier has no verified Email Address&#39;</span><span class="p">))</span></div>
+
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Michael Bomett
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

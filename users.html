@@ -1,0 +1,1463 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>users package &mdash; Techfactura 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="sales package" href="sales.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Techfactura
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">mobile_app</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="company.html">company package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="devices.html">devices package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="homepage.html">homepage package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mobile_app.html">mobile_app package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="payments.html">payments package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sales.html">sales package</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">users package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-users.admin">users.admin module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-users.api_urls">users.api_urls module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-users.apps">users.apps module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-users.filters">users.filters module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-users.models">users.models module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-users.serializers">users.serializers module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-users.signals">users.signals module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-users.tests">users.tests module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-users.urls">users.urls module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-users.views">users.views module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-users">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Techfactura</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="modules.html">mobile_app</a> &raquo;</li>
+        
+      <li>users package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/users.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="users-package">
+<h1>users package<a class="headerlink" href="#users-package" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-users.admin">
+<span id="users-admin-module"></span><h2>users.admin module<a class="headerlink" href="#module-users.admin" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="users.admin.ChatMessagesAdmin">
+<em class="property">class </em><code class="sig-prename descclassname">users.admin.</code><code class="sig-name descname">ChatMessagesAdmin</code><span class="sig-paren">(</span><em class="sig-param">model</em>, <em class="sig-param">admin_site</em><span class="sig-paren">)</span><a class="headerlink" href="#users.admin.ChatMessagesAdmin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.contrib.admin.options.ModelAdmin</span></code></p>
+<dl class="attribute">
+<dt id="users.admin.ChatMessagesAdmin.list_display">
+<code class="sig-name descname">list_display</code><em class="property"> = ('id', 'sender', 'receiver', 'read')</em><a class="headerlink" href="#users.admin.ChatMessagesAdmin.list_display" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="users.admin.ChatMessagesAdmin.media">
+<em class="property">property </em><code class="sig-name descname">media</code><a class="headerlink" href="#users.admin.ChatMessagesAdmin.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="users.admin.ProfileAdmin">
+<em class="property">class </em><code class="sig-prename descclassname">users.admin.</code><code class="sig-name descname">ProfileAdmin</code><span class="sig-paren">(</span><em class="sig-param">model</em>, <em class="sig-param">admin_site</em><span class="sig-paren">)</span><a class="headerlink" href="#users.admin.ProfileAdmin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.contrib.admin.options.ModelAdmin</span></code></p>
+<dl class="attribute">
+<dt id="users.admin.ProfileAdmin.list_display">
+<code class="sig-name descname">list_display</code><em class="property"> = ('id', 'first_name', 'last_name', 'phone', 'phone_verified', 'national_id', 'activate', 'company', 'country')</em><a class="headerlink" href="#users.admin.ProfileAdmin.list_display" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="users.admin.ProfileAdmin.list_filter">
+<code class="sig-name descname">list_filter</code><em class="property"> = ('country', 'activate')</em><a class="headerlink" href="#users.admin.ProfileAdmin.list_filter" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="users.admin.ProfileAdmin.media">
+<em class="property">property </em><code class="sig-name descname">media</code><a class="headerlink" href="#users.admin.ProfileAdmin.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-users.api_urls">
+<span id="users-api-urls-module"></span><h2>users.api_urls module<a class="headerlink" href="#module-users.api_urls" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="users.api_urls.path">
+<code class="sig-prename descclassname">users.api_urls.</code><code class="sig-name descname">path</code><span class="sig-paren">(</span><em class="sig-param">route</em>, <em class="sig-param">view</em>, <em class="sig-param">kwargs=None</em>, <em class="sig-param">name=None</em>, <em class="sig-param">*</em>, <em class="sig-param">Pattern=&lt;class 'django.urls.resolvers.RoutePattern'&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#users.api_urls.path" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-users.apps">
+<span id="users-apps-module"></span><h2>users.apps module<a class="headerlink" href="#module-users.apps" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="users.apps.UsersConfig">
+<em class="property">class </em><code class="sig-prename descclassname">users.apps.</code><code class="sig-name descname">UsersConfig</code><span class="sig-paren">(</span><em class="sig-param">app_name</em>, <em class="sig-param">app_module</em><span class="sig-paren">)</span><a class="headerlink" href="#users.apps.UsersConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.apps.config.AppConfig</span></code></p>
+<dl class="attribute">
+<dt id="users.apps.UsersConfig.name">
+<code class="sig-name descname">name</code><em class="property"> = 'users'</em><a class="headerlink" href="#users.apps.UsersConfig.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-users.filters">
+<span id="users-filters-module"></span><h2>users.filters module<a class="headerlink" href="#module-users.filters" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="users.filters.StaffCompanyFilter">
+<em class="property">class </em><code class="sig-prename descclassname">users.filters.</code><code class="sig-name descname">StaffCompanyFilter</code><span class="sig-paren">(</span><em class="sig-param">data=None</em>, <em class="sig-param">queryset=None</em>, <em class="sig-param">*</em>, <em class="sig-param">request=None</em>, <em class="sig-param">prefix=None</em><span class="sig-paren">)</span><a class="headerlink" href="#users.filters.StaffCompanyFilter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django_filters.filterset.FilterSet</span></code></p>
+<dl class="attribute">
+<dt id="users.filters.StaffCompanyFilter.CHOICES">
+<code class="sig-name descname">CHOICES</code><em class="property"> = (('ascending', 'Ascendente'), ('descending', 'Descendente'))</em><a class="headerlink" href="#users.filters.StaffCompanyFilter.CHOICES" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="users.filters.StaffCompanyFilter.Meta">
+<em class="property">class </em><code class="sig-name descname">Meta</code><a class="headerlink" href="#users.filters.StaffCompanyFilter.Meta" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="attribute">
+<dt id="users.filters.StaffCompanyFilter.Meta.fields">
+<code class="sig-name descname">fields</code><em class="property"> = {'company_name': ['icontains'], 'email': ['icontains'], 'phone': ['exact'], 'pin': ['exact']}</em><a class="headerlink" href="#users.filters.StaffCompanyFilter.Meta.fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="users.filters.StaffCompanyFilter.Meta.model">
+<code class="sig-name descname">model</code><a class="headerlink" href="#users.filters.StaffCompanyFilter.Meta.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <a class="reference internal" href="company.html#company.models.CompProfile" title="company.models.CompProfile"><code class="xref py py-class docutils literal notranslate"><span class="pre">company.models.CompProfile</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="attribute">
+<dt id="users.filters.StaffCompanyFilter.base_filters">
+<code class="sig-name descname">base_filters</code><em class="property"> = {'company_name__icontains': &lt;django_filters.filters.CharFilter object&gt;, 'email__icontains': &lt;django_filters.filters.CharFilter object&gt;, 'ordering': &lt;django_filters.filters.ChoiceFilter object&gt;, 'phone': &lt;django_filters.filters.CharFilter object&gt;, 'pin': &lt;django_filters.filters.CharFilter object&gt;}</em><a class="headerlink" href="#users.filters.StaffCompanyFilter.base_filters" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="users.filters.StaffCompanyFilter.declared_filters">
+<code class="sig-name descname">declared_filters</code><em class="property"> = {'ordering': &lt;django_filters.filters.ChoiceFilter object&gt;}</em><a class="headerlink" href="#users.filters.StaffCompanyFilter.declared_filters" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="users.filters.StaffCompanyFilter.filter_by_order">
+<code class="sig-name descname">filter_by_order</code><span class="sig-paren">(</span><em class="sig-param">queryset</em>, <em class="sig-param">name</em>, <em class="sig-param">value</em><span class="sig-paren">)</span><a class="headerlink" href="#users.filters.StaffCompanyFilter.filter_by_order" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="users.filters.StaffUserFilter">
+<em class="property">class </em><code class="sig-prename descclassname">users.filters.</code><code class="sig-name descname">StaffUserFilter</code><span class="sig-paren">(</span><em class="sig-param">data=None</em>, <em class="sig-param">queryset=None</em>, <em class="sig-param">*</em>, <em class="sig-param">request=None</em>, <em class="sig-param">prefix=None</em><span class="sig-paren">)</span><a class="headerlink" href="#users.filters.StaffUserFilter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django_filters.filterset.FilterSet</span></code></p>
+<dl class="attribute">
+<dt id="users.filters.StaffUserFilter.CHOICES">
+<code class="sig-name descname">CHOICES</code><em class="property"> = (('ascending', 'Ascendente'), ('descending', 'Descendente'))</em><a class="headerlink" href="#users.filters.StaffUserFilter.CHOICES" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="users.filters.StaffUserFilter.Meta">
+<em class="property">class </em><code class="sig-name descname">Meta</code><a class="headerlink" href="#users.filters.StaffUserFilter.Meta" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="attribute">
+<dt id="users.filters.StaffUserFilter.Meta.fields">
+<code class="sig-name descname">fields</code><em class="property"> = {'first_name': ['icontains'], 'last_name': ['icontains'], 'national_id': ['exact'], 'phone': ['exact'], 'tax_id': ['exact']}</em><a class="headerlink" href="#users.filters.StaffUserFilter.Meta.fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="users.filters.StaffUserFilter.Meta.model">
+<code class="sig-name descname">model</code><a class="headerlink" href="#users.filters.StaffUserFilter.Meta.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <a class="reference internal" href="#users.models.Profile" title="users.models.Profile"><code class="xref py py-class docutils literal notranslate"><span class="pre">users.models.Profile</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="attribute">
+<dt id="users.filters.StaffUserFilter.base_filters">
+<code class="sig-name descname">base_filters</code><em class="property"> = {'first_name__icontains': &lt;django_filters.filters.CharFilter object&gt;, 'last_name__icontains': &lt;django_filters.filters.CharFilter object&gt;, 'national_id': &lt;django_filters.filters.CharFilter object&gt;, 'ordering': &lt;django_filters.filters.ChoiceFilter object&gt;, 'phone': &lt;django_filters.filters.CharFilter object&gt;, 'tax_id': &lt;django_filters.filters.CharFilter object&gt;}</em><a class="headerlink" href="#users.filters.StaffUserFilter.base_filters" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="users.filters.StaffUserFilter.declared_filters">
+<code class="sig-name descname">declared_filters</code><em class="property"> = {'ordering': &lt;django_filters.filters.ChoiceFilter object&gt;}</em><a class="headerlink" href="#users.filters.StaffUserFilter.declared_filters" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="users.filters.StaffUserFilter.filter_by_order">
+<code class="sig-name descname">filter_by_order</code><span class="sig-paren">(</span><em class="sig-param">queryset</em>, <em class="sig-param">name</em>, <em class="sig-param">value</em><span class="sig-paren">)</span><a class="headerlink" href="#users.filters.StaffUserFilter.filter_by_order" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-users.models">
+<span id="users-models-module"></span><h2>users.models module<a class="headerlink" href="#module-users.models" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="users.models.CMessage">
+<em class="property">class </em><code class="sig-prename descclassname">users.models.</code><code class="sig-name descname">CMessage</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#users.models.CMessage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.models.base.Model</span></code></p>
+<p>Model for saving chats</p>
+<dl class="exception">
+<dt id="users.models.CMessage.DoesNotExist">
+<em class="property">exception </em><code class="sig-name descname">DoesNotExist</code><a class="headerlink" href="#users.models.CMessage.DoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.core.exceptions.ObjectDoesNotExist</span></code></p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="users.models.CMessage.MultipleObjectsReturned">
+<em class="property">exception </em><code class="sig-name descname">MultipleObjectsReturned</code><a class="headerlink" href="#users.models.CMessage.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.core.exceptions.MultipleObjectsReturned</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="users.models.CMessage.date_posted">
+<code class="sig-name descname">date_posted</code><a class="headerlink" href="#users.models.CMessage.date_posted" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="users.models.CMessage.get_next_by_date_posted">
+<code class="sig-name descname">get_next_by_date_posted</code><span class="sig-paren">(</span><em class="sig-param">*</em>, <em class="sig-param">field=&lt;django.db.models.fields.DateTimeField: date_posted&gt;</em>, <em class="sig-param">is_next=True</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#users.models.CMessage.get_next_by_date_posted" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="users.models.CMessage.get_previous_by_date_posted">
+<code class="sig-name descname">get_previous_by_date_posted</code><span class="sig-paren">(</span><em class="sig-param">*</em>, <em class="sig-param">field=&lt;django.db.models.fields.DateTimeField: date_posted&gt;</em>, <em class="sig-param">is_next=False</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#users.models.CMessage.get_previous_by_date_posted" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="users.models.CMessage.id">
+<code class="sig-name descname">id</code><a class="headerlink" href="#users.models.CMessage.id" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="users.models.CMessage.image">
+<code class="sig-name descname">image</code><a class="headerlink" href="#users.models.CMessage.image" title="Permalink to this definition">¶</a></dt>
+<dd><p>Just like the FileDescriptor, but for ImageFields. The only difference is
+assigning the width/height to the width_field/height_field, if appropriate.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="users.models.CMessage.init">
+<code class="sig-name descname">init</code><a class="headerlink" href="#users.models.CMessage.init" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="users.models.CMessage.message">
+<code class="sig-name descname">message</code><a class="headerlink" href="#users.models.CMessage.message" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="users.models.CMessage.objects">
+<code class="sig-name descname">objects</code><em class="property"> = &lt;django.db.models.manager.Manager object&gt;</em><a class="headerlink" href="#users.models.CMessage.objects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="users.models.CMessage.read">
+<code class="sig-name descname">read</code><a class="headerlink" href="#users.models.CMessage.read" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="users.models.CMessage.receiver">
+<code class="sig-name descname">receiver</code><a class="headerlink" href="#users.models.CMessage.receiver" title="Permalink to this definition">¶</a></dt>
+<dd><p>Accessor to the related object on the forward side of a many-to-one or
+one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Child.parent</span></code> is a <code class="docutils literal notranslate"><span class="pre">ForwardManyToOneDescriptor</span></code> instance.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="users.models.CMessage.receiver_id">
+<code class="sig-name descname">receiver_id</code><a class="headerlink" href="#users.models.CMessage.receiver_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="users.models.CMessage.sender">
+<code class="sig-name descname">sender</code><a class="headerlink" href="#users.models.CMessage.sender" title="Permalink to this definition">¶</a></dt>
+<dd><p>Accessor to the related object on the forward side of a many-to-one or
+one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Child.parent</span></code> is a <code class="docutils literal notranslate"><span class="pre">ForwardManyToOneDescriptor</span></code> instance.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="users.models.CMessage.sender_id">
+<code class="sig-name descname">sender_id</code><a class="headerlink" href="#users.models.CMessage.sender_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="users.models.Profile">
+<em class="property">class </em><code class="sig-prename descclassname">users.models.</code><code class="sig-name descname">Profile</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#users.models.Profile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.models.base.Model</span></code></p>
+<p>Model for saving user profile</p>
+<dl class="exception">
+<dt id="users.models.Profile.DoesNotExist">
+<em class="property">exception </em><code class="sig-name descname">DoesNotExist</code><a class="headerlink" href="#users.models.Profile.DoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.core.exceptions.ObjectDoesNotExist</span></code></p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="users.models.Profile.MultipleObjectsReturned">
+<em class="property">exception </em><code class="sig-name descname">MultipleObjectsReturned</code><a class="headerlink" href="#users.models.Profile.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.core.exceptions.MultipleObjectsReturned</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="users.models.Profile.activate">
+<code class="sig-name descname">activate</code><a class="headerlink" href="#users.models.Profile.activate" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="users.models.Profile.address">
+<code class="sig-name descname">address</code><a class="headerlink" href="#users.models.Profile.address" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="users.models.Profile.approved">
+<code class="sig-name descname">approved</code><a class="headerlink" href="#users.models.Profile.approved" title="Permalink to this definition">¶</a></dt>
+<dd><p>Accessor to the related objects manager on the forward and reverse sides of
+a many-to-many relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Pizza</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">toppings</span> <span class="o">=</span> <span class="n">ManyToManyField</span><span class="p">(</span><span class="n">Topping</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;pizzas&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Pizza.toppings</span></code> and <code class="docutils literal notranslate"><span class="pre">Topping.pizzas</span></code> are <code class="docutils literal notranslate"><span class="pre">ManyToManyDescriptor</span></code>
+instances.</p>
+<p>Most of the implementation is delegated to a dynamically defined manager
+class built by <code class="docutils literal notranslate"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="users.models.Profile.blocked">
+<code class="sig-name descname">blocked</code><a class="headerlink" href="#users.models.Profile.blocked" title="Permalink to this definition">¶</a></dt>
+<dd><p>Accessor to the related objects manager on the forward and reverse sides of
+a many-to-many relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Pizza</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">toppings</span> <span class="o">=</span> <span class="n">ManyToManyField</span><span class="p">(</span><span class="n">Topping</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;pizzas&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Pizza.toppings</span></code> and <code class="docutils literal notranslate"><span class="pre">Topping.pizzas</span></code> are <code class="docutils literal notranslate"><span class="pre">ManyToManyDescriptor</span></code>
+instances.</p>
+<p>Most of the implementation is delegated to a dynamically defined manager
+class built by <code class="docutils literal notranslate"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="users.models.Profile.cmessage_set">
+<code class="sig-name descname">cmessage_set</code><a class="headerlink" href="#users.models.Profile.cmessage_set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Accessor to the related objects manager on the reverse side of a
+many-to-one relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Parent.children</span></code> is a <code class="docutils literal notranslate"><span class="pre">ReverseManyToOneDescriptor</span></code> instance.</p>
+<p>Most of the implementation is delegated to a dynamically defined manager
+class built by <code class="docutils literal notranslate"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="users.models.Profile.company">
+<code class="sig-name descname">company</code><a class="headerlink" href="#users.models.Profile.company" title="Permalink to this definition">¶</a></dt>
+<dd><p>Accessor to the related object on the forward side of a many-to-one or
+one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Child.parent</span></code> is a <code class="docutils literal notranslate"><span class="pre">ForwardManyToOneDescriptor</span></code> instance.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="users.models.Profile.company_id">
+<code class="sig-name descname">company_id</code><a class="headerlink" href="#users.models.Profile.company_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="users.models.Profile.company_request">
+<code class="sig-name descname">company_request</code><a class="headerlink" href="#users.models.Profile.company_request" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="users.models.Profile.compressImage">
+<code class="sig-name descname">compressImage</code><span class="sig-paren">(</span><em class="sig-param">image</em><span class="sig-paren">)</span><a class="headerlink" href="#users.models.Profile.compressImage" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="users.models.Profile.country">
+<code class="sig-name descname">country</code><a class="headerlink" href="#users.models.Profile.country" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="users.models.Profile.first_name">
+<code class="sig-name descname">first_name</code><a class="headerlink" href="#users.models.Profile.first_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="users.models.Profile.geometry">
+<code class="sig-name descname">geometry</code><a class="headerlink" href="#users.models.Profile.geometry" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="users.models.Profile.get_absolute_url">
+<code class="sig-name descname">get_absolute_url</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#users.models.Profile.get_absolute_url" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="users.models.Profile.get_country_display">
+<code class="sig-name descname">get_country_display</code><span class="sig-paren">(</span><em class="sig-param">*</em>, <em class="sig-param">field=&lt;django.db.models.fields.CharField: country&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#users.models.Profile.get_country_display" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="users.models.Profile.id">
+<code class="sig-name descname">id</code><a class="headerlink" href="#users.models.Profile.id" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="users.models.Profile.image">
+<code class="sig-name descname">image</code><a class="headerlink" href="#users.models.Profile.image" title="Permalink to this definition">¶</a></dt>
+<dd><p>Just like the FileDescriptor, but for ImageFields. The only difference is
+assigning the width/height to the width_field/height_field, if appropriate.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="users.models.Profile.invoicenewtotal_set">
+<code class="sig-name descname">invoicenewtotal_set</code><a class="headerlink" href="#users.models.Profile.invoicenewtotal_set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Accessor to the related objects manager on the reverse side of a
+many-to-one relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Parent.children</span></code> is a <code class="docutils literal notranslate"><span class="pre">ReverseManyToOneDescriptor</span></code> instance.</p>
+<p>Most of the implementation is delegated to a dynamically defined manager
+class built by <code class="docutils literal notranslate"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="users.models.Profile.last_name">
+<code class="sig-name descname">last_name</code><a class="headerlink" href="#users.models.Profile.last_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="users.models.Profile.location">
+<code class="sig-name descname">location</code><a class="headerlink" href="#users.models.Profile.location" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="users.models.Profile.my_company_name">
+<code class="sig-name descname">my_company_name</code><a class="headerlink" href="#users.models.Profile.my_company_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="users.models.Profile.national_id">
+<code class="sig-name descname">national_id</code><a class="headerlink" href="#users.models.Profile.national_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="users.models.Profile.objects">
+<code class="sig-name descname">objects</code><em class="property"> = &lt;django.db.models.manager.Manager object&gt;</em><a class="headerlink" href="#users.models.Profile.objects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="users.models.Profile.passcode">
+<code class="sig-name descname">passcode</code><a class="headerlink" href="#users.models.Profile.passcode" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="users.models.Profile.payments_set">
+<code class="sig-name descname">payments_set</code><a class="headerlink" href="#users.models.Profile.payments_set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Accessor to the related objects manager on the reverse side of a
+many-to-one relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Parent.children</span></code> is a <code class="docutils literal notranslate"><span class="pre">ReverseManyToOneDescriptor</span></code> instance.</p>
+<p>Most of the implementation is delegated to a dynamically defined manager
+class built by <code class="docutils literal notranslate"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="users.models.Profile.phone">
+<code class="sig-name descname">phone</code><a class="headerlink" href="#users.models.Profile.phone" title="Permalink to this definition">¶</a></dt>
+<dd><p>The descriptor for the phone number attribute on the model instance.
+Returns a PhoneNumber when accessed so you can do stuff like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">instance</span><span class="o">.</span><span class="n">phone_number</span><span class="o">.</span><span class="n">as_international</span>
+</pre></div>
+</div>
+<p>Assigns a phone number object on assignment so you can do:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">instance</span><span class="o">.</span><span class="n">phone_number</span> <span class="o">=</span> <span class="n">PhoneNumber</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl>
+<dt>or</dt><dd><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">instance</span><span class="o">.</span><span class="n">phone_number</span> <span class="o">=</span> <span class="s1">&#39;+414204242&#39;</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="users.models.Profile.phone_verified">
+<code class="sig-name descname">phone_verified</code><a class="headerlink" href="#users.models.Profile.phone_verified" title="Permalink to this definition">¶</a></dt>
+<dd><p>The descriptor for the phone number attribute on the model instance.
+Returns a PhoneNumber when accessed so you can do stuff like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">instance</span><span class="o">.</span><span class="n">phone_number</span><span class="o">.</span><span class="n">as_international</span>
+</pre></div>
+</div>
+<p>Assigns a phone number object on assignment so you can do:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">instance</span><span class="o">.</span><span class="n">phone_number</span> <span class="o">=</span> <span class="n">PhoneNumber</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl>
+<dt>or</dt><dd><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">instance</span><span class="o">.</span><span class="n">phone_number</span> <span class="o">=</span> <span class="s1">&#39;+414204242&#39;</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="users.models.Profile.receiver">
+<code class="sig-name descname">receiver</code><a class="headerlink" href="#users.models.Profile.receiver" title="Permalink to this definition">¶</a></dt>
+<dd><p>Accessor to the related objects manager on the reverse side of a
+many-to-one relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Parent.children</span></code> is a <code class="docutils literal notranslate"><span class="pre">ReverseManyToOneDescriptor</span></code> instance.</p>
+<p>Most of the implementation is delegated to a dynamically defined manager
+class built by <code class="docutils literal notranslate"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="users.models.Profile.save">
+<code class="sig-name descname">save</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#users.models.Profile.save" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save the current instance. Override this in a subclass if you want to
+control the saving process.</p>
+<p>The ‘force_insert’ and ‘force_update’ parameters can be used to insist
+that the “save” must be an SQL insert or update (or equivalent for
+non-SQL backends), respectively. Normally, they should not be set.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="users.models.Profile.supply">
+<code class="sig-name descname">supply</code><a class="headerlink" href="#users.models.Profile.supply" title="Permalink to this definition">¶</a></dt>
+<dd><p>Accessor to the related objects manager on the forward and reverse sides of
+a many-to-many relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Pizza</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">toppings</span> <span class="o">=</span> <span class="n">ManyToManyField</span><span class="p">(</span><span class="n">Topping</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;pizzas&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Pizza.toppings</span></code> and <code class="docutils literal notranslate"><span class="pre">Topping.pizzas</span></code> are <code class="docutils literal notranslate"><span class="pre">ManyToManyDescriptor</span></code>
+instances.</p>
+<p>Most of the implementation is delegated to a dynamically defined manager
+class built by <code class="docutils literal notranslate"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="users.models.Profile.tax_id">
+<code class="sig-name descname">tax_id</code><a class="headerlink" href="#users.models.Profile.tax_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="users.models.Profile.user">
+<code class="sig-name descname">user</code><a class="headerlink" href="#users.models.Profile.user" title="Permalink to this definition">¶</a></dt>
+<dd><p>Accessor to the related object on the forward side of a one-to-one relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Restaurant</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">place</span> <span class="o">=</span> <span class="n">OneToOneField</span><span class="p">(</span><span class="n">Place</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;restaurant&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Restaurant.place</span></code> is a <code class="docutils literal notranslate"><span class="pre">ForwardOneToOneDescriptor</span></code> instance.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="users.models.Profile.user_id">
+<code class="sig-name descname">user_id</code><a class="headerlink" href="#users.models.Profile.user_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="users.models.Profile.website">
+<code class="sig-name descname">website</code><a class="headerlink" href="#users.models.Profile.website" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-users.serializers">
+<span id="users-serializers-module"></span><h2>users.serializers module<a class="headerlink" href="#module-users.serializers" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="users.serializers.ProfileSerializer">
+<em class="property">class </em><code class="sig-prename descclassname">users.serializers.</code><code class="sig-name descname">ProfileSerializer</code><span class="sig-paren">(</span><em class="sig-param">instance=None</em>, <em class="sig-param">data=&lt;class 'rest_framework.fields.empty'&gt;</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#users.serializers.ProfileSerializer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">rest_framework.serializers.ModelSerializer</span></code></p>
+<dl class="class">
+<dt id="users.serializers.ProfileSerializer.Meta">
+<em class="property">class </em><code class="sig-name descname">Meta</code><a class="headerlink" href="#users.serializers.ProfileSerializer.Meta" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="attribute">
+<dt id="users.serializers.ProfileSerializer.Meta.fields">
+<code class="sig-name descname">fields</code><em class="property"> = ('user', 'image', 'phone', 'address', 'national_id', 'tax_id', 'website', 'url')</em><a class="headerlink" href="#users.serializers.ProfileSerializer.Meta.fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="users.serializers.ProfileSerializer.Meta.model">
+<code class="sig-name descname">model</code><a class="headerlink" href="#users.serializers.ProfileSerializer.Meta.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <a class="reference internal" href="#users.models.Profile" title="users.models.Profile"><code class="xref py py-class docutils literal notranslate"><span class="pre">users.models.Profile</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-users.signals">
+<span id="users-signals-module"></span><h2>users.signals module<a class="headerlink" href="#module-users.signals" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="users.signals.save_profile">
+<code class="sig-prename descclassname">users.signals.</code><code class="sig-name descname">save_profile</code><span class="sig-paren">(</span><em class="sig-param">sender</em>, <em class="sig-param">instance</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#users.signals.save_profile" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-users.tests">
+<span id="users-tests-module"></span><h2>users.tests module<a class="headerlink" href="#module-users.tests" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-users.urls">
+<span id="users-urls-module"></span><h2>users.urls module<a class="headerlink" href="#module-users.urls" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="users.urls.path">
+<code class="sig-prename descclassname">users.urls.</code><code class="sig-name descname">path</code><span class="sig-paren">(</span><em class="sig-param">route</em>, <em class="sig-param">view</em>, <em class="sig-param">kwargs=None</em>, <em class="sig-param">name=None</em>, <em class="sig-param">*</em>, <em class="sig-param">Pattern=&lt;class 'django.urls.resolvers.RoutePattern'&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#users.urls.path" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-users.views">
+<span id="users-views-module"></span><h2>users.views module<a class="headerlink" href="#module-users.views" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="users.views.BlockUserView">
+<em class="property">class </em><code class="sig-prename descclassname">users.views.</code><code class="sig-name descname">BlockUserView</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#users.views.BlockUserView" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.contrib.auth.mixins.LoginRequiredMixin</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">django.contrib.auth.mixins.UserPassesTestMixin</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.base.View</span></code></p>
+<p>View rendered to block users from sending chat messages</p>
+<dl class="method">
+<dt id="users.views.BlockUserView.get">
+<code class="sig-name descname">get</code><span class="sig-paren">(</span><em class="sig-param">request</em>, <em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#users.views.BlockUserView.get" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="users.views.BlockUserView.post">
+<code class="sig-name descname">post</code><span class="sig-paren">(</span><em class="sig-param">request</em>, <em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#users.views.BlockUserView.post" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="users.views.BlockUserView.template_name">
+<code class="sig-name descname">template_name</code><em class="property"> = 'users/block_user.html'</em><a class="headerlink" href="#users.views.BlockUserView.template_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="users.views.BlockUserView.test_func">
+<code class="sig-name descname">test_func</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#users.views.BlockUserView.test_func" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="users.views.BlockedListView">
+<em class="property">class </em><code class="sig-prename descclassname">users.views.</code><code class="sig-name descname">BlockedListView</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#users.views.BlockedListView" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.contrib.auth.mixins.LoginRequiredMixin</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.base.View</span></code></p>
+<p>View rendered to display list of blocked users</p>
+<dl class="method">
+<dt id="users.views.BlockedListView.get">
+<code class="sig-name descname">get</code><span class="sig-paren">(</span><em class="sig-param">request</em><span class="sig-paren">)</span><a class="headerlink" href="#users.views.BlockedListView.get" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="users.views.BlockedListView.template_name">
+<code class="sig-name descname">template_name</code><em class="property"> = 'users/blocked.html'</em><a class="headerlink" href="#users.views.BlockedListView.template_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="users.views.ExemptionCreateView">
+<em class="property">class </em><code class="sig-prename descclassname">users.views.</code><code class="sig-name descname">ExemptionCreateView</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#users.views.ExemptionCreateView" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.contrib.auth.mixins.LoginRequiredMixin</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">django.contrib.auth.mixins.UserPassesTestMixin</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.edit.CreateView</span></code></p>
+<p>View rendered to techfactura staff for creating TAX Exemptions</p>
+<dl class="attribute">
+<dt id="users.views.ExemptionCreateView.fields">
+<code class="sig-name descname">fields</code><em class="property"> = ('exempt', 'country')</em><a class="headerlink" href="#users.views.ExemptionCreateView.fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="users.views.ExemptionCreateView.form_valid">
+<code class="sig-name descname">form_valid</code><span class="sig-paren">(</span><em class="sig-param">form</em><span class="sig-paren">)</span><a class="headerlink" href="#users.views.ExemptionCreateView.form_valid" title="Permalink to this definition">¶</a></dt>
+<dd><p>If the form is valid, save the associated model.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="users.views.ExemptionCreateView.model">
+<code class="sig-name descname">model</code><a class="headerlink" href="#users.views.ExemptionCreateView.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <a class="reference internal" href="company.html#company.models.Exemptions" title="company.models.Exemptions"><code class="xref py py-class docutils literal notranslate"><span class="pre">company.models.Exemptions</span></code></a></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="users.views.ExemptionCreateView.template_name">
+<code class="sig-name descname">template_name</code><em class="property"> = 'users/exemptions_form.html'</em><a class="headerlink" href="#users.views.ExemptionCreateView.template_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="users.views.ExemptionCreateView.test_func">
+<code class="sig-name descname">test_func</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#users.views.ExemptionCreateView.test_func" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="users.views.ExemptionDeleteView">
+<em class="property">class </em><code class="sig-prename descclassname">users.views.</code><code class="sig-name descname">ExemptionDeleteView</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#users.views.ExemptionDeleteView" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.contrib.auth.mixins.LoginRequiredMixin</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">django.contrib.auth.mixins.UserPassesTestMixin</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.edit.DeleteView</span></code></p>
+<p>View rendered to techfactura staff for deleting TAX Exemptions</p>
+<dl class="attribute">
+<dt id="users.views.ExemptionDeleteView.model">
+<code class="sig-name descname">model</code><a class="headerlink" href="#users.views.ExemptionDeleteView.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <a class="reference internal" href="company.html#company.models.Exemptions" title="company.models.Exemptions"><code class="xref py py-class docutils literal notranslate"><span class="pre">company.models.Exemptions</span></code></a></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="users.views.ExemptionDeleteView.success_url">
+<code class="sig-name descname">success_url</code><em class="property"> = '/'</em><a class="headerlink" href="#users.views.ExemptionDeleteView.success_url" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="users.views.ExemptionDeleteView.template_name">
+<code class="sig-name descname">template_name</code><em class="property"> = 'users/exemptions_confirm_delete.html'</em><a class="headerlink" href="#users.views.ExemptionDeleteView.template_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="users.views.ExemptionDeleteView.test_func">
+<code class="sig-name descname">test_func</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#users.views.ExemptionDeleteView.test_func" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="users.views.ExemptionListView">
+<em class="property">class </em><code class="sig-prename descclassname">users.views.</code><code class="sig-name descname">ExemptionListView</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#users.views.ExemptionListView" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.contrib.auth.mixins.LoginRequiredMixin</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">django.contrib.auth.mixins.UserPassesTestMixin</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.list.ListView</span></code></p>
+<p>View rendered to techfactura staff for listing TAX Exemptions</p>
+<dl class="attribute">
+<dt id="users.views.ExemptionListView.context_object_name">
+<code class="sig-name descname">context_object_name</code><em class="property"> = 'plist'</em><a class="headerlink" href="#users.views.ExemptionListView.context_object_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="users.views.ExemptionListView.model">
+<code class="sig-name descname">model</code><a class="headerlink" href="#users.views.ExemptionListView.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <a class="reference internal" href="company.html#company.models.Exemptions" title="company.models.Exemptions"><code class="xref py py-class docutils literal notranslate"><span class="pre">company.models.Exemptions</span></code></a></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="users.views.ExemptionListView.paginate_by">
+<code class="sig-name descname">paginate_by</code><em class="property"> = 20</em><a class="headerlink" href="#users.views.ExemptionListView.paginate_by" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="users.views.ExemptionListView.template_name">
+<code class="sig-name descname">template_name</code><em class="property"> = 'users/exemptions_list.html'</em><a class="headerlink" href="#users.views.ExemptionListView.template_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="users.views.ExemptionListView.test_func">
+<code class="sig-name descname">test_func</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#users.views.ExemptionListView.test_func" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="users.views.ExemptionUpdateView">
+<em class="property">class </em><code class="sig-prename descclassname">users.views.</code><code class="sig-name descname">ExemptionUpdateView</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#users.views.ExemptionUpdateView" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.contrib.auth.mixins.LoginRequiredMixin</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">django.contrib.auth.mixins.UserPassesTestMixin</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.edit.UpdateView</span></code></p>
+<p>View rendered to techfactura staff for updating TAX Exemptions</p>
+<dl class="attribute">
+<dt id="users.views.ExemptionUpdateView.fields">
+<code class="sig-name descname">fields</code><em class="property"> = ('exempt', 'country')</em><a class="headerlink" href="#users.views.ExemptionUpdateView.fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="users.views.ExemptionUpdateView.form_valid">
+<code class="sig-name descname">form_valid</code><span class="sig-paren">(</span><em class="sig-param">form</em><span class="sig-paren">)</span><a class="headerlink" href="#users.views.ExemptionUpdateView.form_valid" title="Permalink to this definition">¶</a></dt>
+<dd><p>If the form is valid, save the associated model.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="users.views.ExemptionUpdateView.model">
+<code class="sig-name descname">model</code><a class="headerlink" href="#users.views.ExemptionUpdateView.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <a class="reference internal" href="company.html#company.models.Exemptions" title="company.models.Exemptions"><code class="xref py py-class docutils literal notranslate"><span class="pre">company.models.Exemptions</span></code></a></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="users.views.ExemptionUpdateView.template_name">
+<code class="sig-name descname">template_name</code><em class="property"> = 'users/exemptions_form.html'</em><a class="headerlink" href="#users.views.ExemptionUpdateView.template_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="users.views.ExemptionUpdateView.test_func">
+<code class="sig-name descname">test_func</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#users.views.ExemptionUpdateView.test_func" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="users.views.MessagesChatView">
+<em class="property">class </em><code class="sig-prename descclassname">users.views.</code><code class="sig-name descname">MessagesChatView</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#users.views.MessagesChatView" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.contrib.auth.mixins.LoginRequiredMixin</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.base.View</span></code></p>
+<p>View rendered to display chat messages sent</p>
+<dl class="method">
+<dt id="users.views.MessagesChatView.get">
+<code class="sig-name descname">get</code><span class="sig-paren">(</span><em class="sig-param">request</em>, <em class="sig-param">pk</em><span class="sig-paren">)</span><a class="headerlink" href="#users.views.MessagesChatView.get" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="users.views.MessagesChatView.model">
+<code class="sig-name descname">model</code><a class="headerlink" href="#users.views.MessagesChatView.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <a class="reference internal" href="#users.models.CMessage" title="users.models.CMessage"><code class="xref py py-class docutils literal notranslate"><span class="pre">users.models.CMessage</span></code></a></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="users.views.MessagesChatView.post">
+<code class="sig-name descname">post</code><span class="sig-paren">(</span><em class="sig-param">request</em>, <em class="sig-param">pk</em><span class="sig-paren">)</span><a class="headerlink" href="#users.views.MessagesChatView.post" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="users.views.MessagesChatView.template_name">
+<code class="sig-name descname">template_name</code><em class="property"> = 'users/chat.html'</em><a class="headerlink" href="#users.views.MessagesChatView.template_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="users.views.MessagesListView">
+<em class="property">class </em><code class="sig-prename descclassname">users.views.</code><code class="sig-name descname">MessagesListView</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#users.views.MessagesListView" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.contrib.auth.mixins.LoginRequiredMixin</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.base.View</span></code></p>
+<p>View rendered to display chat list</p>
+<dl class="method">
+<dt id="users.views.MessagesListView.get">
+<code class="sig-name descname">get</code><span class="sig-paren">(</span><em class="sig-param">request</em><span class="sig-paren">)</span><a class="headerlink" href="#users.views.MessagesListView.get" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="users.views.MessagesListView.model">
+<code class="sig-name descname">model</code><a class="headerlink" href="#users.views.MessagesListView.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <a class="reference internal" href="#users.models.CMessage" title="users.models.CMessage"><code class="xref py py-class docutils literal notranslate"><span class="pre">users.models.CMessage</span></code></a></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="users.views.MessagesListView.template_name">
+<code class="sig-name descname">template_name</code><em class="property"> = 'users/messages.html'</em><a class="headerlink" href="#users.views.MessagesListView.template_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="users.views.MessagesReceivedView">
+<em class="property">class </em><code class="sig-prename descclassname">users.views.</code><code class="sig-name descname">MessagesReceivedView</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#users.views.MessagesReceivedView" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.contrib.auth.mixins.LoginRequiredMixin</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.base.View</span></code></p>
+<p>View rendered to display chat messages received</p>
+<dl class="method">
+<dt id="users.views.MessagesReceivedView.get">
+<code class="sig-name descname">get</code><span class="sig-paren">(</span><em class="sig-param">request</em>, <em class="sig-param">pk</em><span class="sig-paren">)</span><a class="headerlink" href="#users.views.MessagesReceivedView.get" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="users.views.MessagesReceivedView.model">
+<code class="sig-name descname">model</code><a class="headerlink" href="#users.views.MessagesReceivedView.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <a class="reference internal" href="#users.models.CMessage" title="users.models.CMessage"><code class="xref py py-class docutils literal notranslate"><span class="pre">users.models.CMessage</span></code></a></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="users.views.MessagesReceivedView.post">
+<code class="sig-name descname">post</code><span class="sig-paren">(</span><em class="sig-param">request</em>, <em class="sig-param">pk</em><span class="sig-paren">)</span><a class="headerlink" href="#users.views.MessagesReceivedView.post" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="users.views.MessagesReceivedView.template_name">
+<code class="sig-name descname">template_name</code><em class="property"> = 'users/chat_back.html'</em><a class="headerlink" href="#users.views.MessagesReceivedView.template_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="users.views.PhoneNumberVerify">
+<em class="property">class </em><code class="sig-prename descclassname">users.views.</code><code class="sig-name descname">PhoneNumberVerify</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#users.views.PhoneNumberVerify" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.contrib.auth.mixins.LoginRequiredMixin</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">django.contrib.auth.mixins.UserPassesTestMixin</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.base.View</span></code></p>
+<p>View rendered when verifying a phone number</p>
+<dl class="attribute">
+<dt id="users.views.PhoneNumberVerify.fields">
+<code class="sig-name descname">fields</code><em class="property"> = ('passcode',)</em><a class="headerlink" href="#users.views.PhoneNumberVerify.fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="users.views.PhoneNumberVerify.get">
+<code class="sig-name descname">get</code><span class="sig-paren">(</span><em class="sig-param">request</em>, <em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#users.views.PhoneNumberVerify.get" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="users.views.PhoneNumberVerify.model">
+<code class="sig-name descname">model</code><a class="headerlink" href="#users.views.PhoneNumberVerify.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <a class="reference internal" href="#users.models.Profile" title="users.models.Profile"><code class="xref py py-class docutils literal notranslate"><span class="pre">users.models.Profile</span></code></a></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="users.views.PhoneNumberVerify.post">
+<code class="sig-name descname">post</code><span class="sig-paren">(</span><em class="sig-param">request</em>, <em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#users.views.PhoneNumberVerify.post" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="users.views.PhoneNumberVerify.template_name">
+<code class="sig-name descname">template_name</code><em class="property"> = 'users/phone_number_verify.html'</em><a class="headerlink" href="#users.views.PhoneNumberVerify.template_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="users.views.PhoneNumberVerify.test_func">
+<code class="sig-name descname">test_func</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#users.views.PhoneNumberVerify.test_func" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="users.views.ProfileAPIListView">
+<em class="property">class </em><code class="sig-prename descclassname">users.views.</code><code class="sig-name descname">ProfileAPIListView</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#users.views.ProfileAPIListView" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">rest_framework.generics.GenericAPIView</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">rest_framework.mixins.ListModelMixin</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">rest_framework.mixins.UpdateModelMixin</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">rest_framework.mixins.CreateModelMixin</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">rest_framework.mixins.RetrieveModelMixin</span></code></p>
+<dl class="method">
+<dt id="users.views.ProfileAPIListView.get">
+<code class="sig-name descname">get</code><span class="sig-paren">(</span><em class="sig-param">request</em>, <em class="sig-param">id=None</em><span class="sig-paren">)</span><a class="headerlink" href="#users.views.ProfileAPIListView.get" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="users.views.ProfileAPIListView.lookup_field">
+<code class="sig-name descname">lookup_field</code><em class="property"> = 'id'</em><a class="headerlink" href="#users.views.ProfileAPIListView.lookup_field" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="users.views.ProfileAPIListView.post">
+<code class="sig-name descname">post</code><span class="sig-paren">(</span><em class="sig-param">request</em><span class="sig-paren">)</span><a class="headerlink" href="#users.views.ProfileAPIListView.post" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="users.views.ProfileAPIListView.put">
+<code class="sig-name descname">put</code><span class="sig-paren">(</span><em class="sig-param">request</em>, <em class="sig-param">id=None</em><span class="sig-paren">)</span><a class="headerlink" href="#users.views.ProfileAPIListView.put" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="users.views.ProfileAPIListView.queryset">
+<code class="sig-name descname">queryset</code><em class="property"> = &lt;QuerySet [&lt;Profile: img test&gt;, &lt;Profile: prof img&gt;, &lt;Profile: Png Test&gt;, &lt;Profile: New Geo&gt;, &lt;Profile: Geo Test&gt;, &lt;Profile: New Staff&gt;, &lt;Profile: fox user&gt;, &lt;Profile: Test Country&gt;, &lt;Profile: Reg Company&gt;, &lt;Profile: Michael Bomett&gt;]&gt;</em><a class="headerlink" href="#users.views.ProfileAPIListView.queryset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="users.views.ProfileAPIListView.serializer_class">
+<code class="sig-name descname">serializer_class</code><a class="headerlink" href="#users.views.ProfileAPIListView.serializer_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <a class="reference internal" href="#users.serializers.ProfileSerializer" title="users.serializers.ProfileSerializer"><code class="xref py py-class docutils literal notranslate"><span class="pre">users.serializers.ProfileSerializer</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="users.views.ProfileCreateView">
+<em class="property">class </em><code class="sig-prename descclassname">users.views.</code><code class="sig-name descname">ProfileCreateView</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#users.views.ProfileCreateView" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.contrib.auth.mixins.LoginRequiredMixin</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">django.contrib.auth.mixins.UserPassesTestMixin</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.edit.CreateView</span></code></p>
+<p>View rendered when creating a profile</p>
+<dl class="attribute">
+<dt id="users.views.ProfileCreateView.form_class">
+<code class="sig-name descname">form_class</code><a class="headerlink" href="#users.views.ProfileCreateView.form_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">users.templates.users.forms.ProfileCreateForm</span></code></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="users.views.ProfileCreateView.form_valid">
+<code class="sig-name descname">form_valid</code><span class="sig-paren">(</span><em class="sig-param">form</em><span class="sig-paren">)</span><a class="headerlink" href="#users.views.ProfileCreateView.form_valid" title="Permalink to this definition">¶</a></dt>
+<dd><p>If the form is valid, save the associated model.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="users.views.ProfileCreateView.model">
+<code class="sig-name descname">model</code><a class="headerlink" href="#users.views.ProfileCreateView.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <a class="reference internal" href="#users.models.Profile" title="users.models.Profile"><code class="xref py py-class docutils literal notranslate"><span class="pre">users.models.Profile</span></code></a></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="users.views.ProfileCreateView.test_func">
+<code class="sig-name descname">test_func</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#users.views.ProfileCreateView.test_func" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="users.views.ProfileDetailView">
+<em class="property">class </em><code class="sig-prename descclassname">users.views.</code><code class="sig-name descname">ProfileDetailView</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#users.views.ProfileDetailView" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.contrib.auth.mixins.LoginRequiredMixin</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.detail.DetailView</span></code></p>
+<p>View for displaying a user’s profile</p>
+<dl class="method">
+<dt id="users.views.ProfileDetailView.get_context_data">
+<code class="sig-name descname">get_context_data</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#users.views.ProfileDetailView.get_context_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Insert the single object into the context dict.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="users.views.ProfileDetailView.model">
+<code class="sig-name descname">model</code><a class="headerlink" href="#users.views.ProfileDetailView.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <a class="reference internal" href="#users.models.Profile" title="users.models.Profile"><code class="xref py py-class docutils literal notranslate"><span class="pre">users.models.Profile</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="users.views.ProfileUpdateView">
+<em class="property">class </em><code class="sig-prename descclassname">users.views.</code><code class="sig-name descname">ProfileUpdateView</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#users.views.ProfileUpdateView" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.contrib.auth.mixins.LoginRequiredMixin</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">django.contrib.auth.mixins.UserPassesTestMixin</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.edit.UpdateView</span></code></p>
+<p>View rendered when updating a profile</p>
+<dl class="attribute">
+<dt id="users.views.ProfileUpdateView.form_class">
+<code class="sig-name descname">form_class</code><a class="headerlink" href="#users.views.ProfileUpdateView.form_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">users.templates.users.forms.ProfileUpdateForm</span></code></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="users.views.ProfileUpdateView.form_valid">
+<code class="sig-name descname">form_valid</code><span class="sig-paren">(</span><em class="sig-param">form</em><span class="sig-paren">)</span><a class="headerlink" href="#users.views.ProfileUpdateView.form_valid" title="Permalink to this definition">¶</a></dt>
+<dd><p>If the form is valid, save the associated model.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="users.views.ProfileUpdateView.model">
+<code class="sig-name descname">model</code><a class="headerlink" href="#users.views.ProfileUpdateView.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <a class="reference internal" href="#users.models.Profile" title="users.models.Profile"><code class="xref py py-class docutils literal notranslate"><span class="pre">users.models.Profile</span></code></a></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="users.views.ProfileUpdateView.test_func">
+<code class="sig-name descname">test_func</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#users.views.ProfileUpdateView.test_func" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="users.views.StaffCompanyListView">
+<em class="property">class </em><code class="sig-prename descclassname">users.views.</code><code class="sig-name descname">StaffCompanyListView</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#users.views.StaffCompanyListView" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.contrib.auth.mixins.LoginRequiredMixin</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">django.contrib.auth.mixins.UserPassesTestMixin</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.list.ListView</span></code></p>
+<p>View rendered to techfactura staff to display list of companies</p>
+<dl class="method">
+<dt id="users.views.StaffCompanyListView.get_context_data">
+<code class="sig-name descname">get_context_data</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#users.views.StaffCompanyListView.get_context_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the context for this view.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="users.views.StaffCompanyListView.model">
+<code class="sig-name descname">model</code><a class="headerlink" href="#users.views.StaffCompanyListView.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <a class="reference internal" href="company.html#company.models.CompProfile" title="company.models.CompProfile"><code class="xref py py-class docutils literal notranslate"><span class="pre">company.models.CompProfile</span></code></a></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="users.views.StaffCompanyListView.template_name">
+<code class="sig-name descname">template_name</code><em class="property"> = 'users/staff_company_filter.html'</em><a class="headerlink" href="#users.views.StaffCompanyListView.template_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="users.views.StaffCompanyListView.test_func">
+<code class="sig-name descname">test_func</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#users.views.StaffCompanyListView.test_func" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="users.views.StaffCompanyUpdateView">
+<em class="property">class </em><code class="sig-prename descclassname">users.views.</code><code class="sig-name descname">StaffCompanyUpdateView</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#users.views.StaffCompanyUpdateView" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.contrib.auth.mixins.LoginRequiredMixin</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">django.contrib.auth.mixins.UserPassesTestMixin</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.edit.UpdateView</span></code></p>
+<p>View rendered to techfactura staff for updating company profiles</p>
+<dl class="attribute">
+<dt id="users.views.StaffCompanyUpdateView.form_class">
+<code class="sig-name descname">form_class</code><a class="headerlink" href="#users.views.StaffCompanyUpdateView.form_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">users.templates.users.forms.StaffCompanyUpdateForm</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="users.views.StaffCompanyUpdateView.model">
+<code class="sig-name descname">model</code><a class="headerlink" href="#users.views.StaffCompanyUpdateView.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <a class="reference internal" href="company.html#company.models.CompProfile" title="company.models.CompProfile"><code class="xref py py-class docutils literal notranslate"><span class="pre">company.models.CompProfile</span></code></a></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="users.views.StaffCompanyUpdateView.template_name">
+<code class="sig-name descname">template_name</code><em class="property"> = 'users/staff_company_update.html'</em><a class="headerlink" href="#users.views.StaffCompanyUpdateView.template_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="users.views.StaffCompanyUpdateView.test_func">
+<code class="sig-name descname">test_func</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#users.views.StaffCompanyUpdateView.test_func" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="users.views.StaffUserListView">
+<em class="property">class </em><code class="sig-prename descclassname">users.views.</code><code class="sig-name descname">StaffUserListView</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#users.views.StaffUserListView" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.contrib.auth.mixins.LoginRequiredMixin</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">django.contrib.auth.mixins.UserPassesTestMixin</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.list.ListView</span></code></p>
+<p>View rendered to techfactura staff to display list of user profiles</p>
+<dl class="method">
+<dt id="users.views.StaffUserListView.get_context_data">
+<code class="sig-name descname">get_context_data</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#users.views.StaffUserListView.get_context_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the context for this view.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="users.views.StaffUserListView.model">
+<code class="sig-name descname">model</code><a class="headerlink" href="#users.views.StaffUserListView.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <a class="reference internal" href="#users.models.Profile" title="users.models.Profile"><code class="xref py py-class docutils literal notranslate"><span class="pre">users.models.Profile</span></code></a></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="users.views.StaffUserListView.template_name">
+<code class="sig-name descname">template_name</code><em class="property"> = 'users/staff_user_filter.html'</em><a class="headerlink" href="#users.views.StaffUserListView.template_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="users.views.StaffUserListView.test_func">
+<code class="sig-name descname">test_func</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#users.views.StaffUserListView.test_func" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="users.views.StaffUserUpdateView">
+<em class="property">class </em><code class="sig-prename descclassname">users.views.</code><code class="sig-name descname">StaffUserUpdateView</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#users.views.StaffUserUpdateView" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.contrib.auth.mixins.LoginRequiredMixin</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">django.contrib.auth.mixins.UserPassesTestMixin</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.edit.UpdateView</span></code></p>
+<p>View rendered to techfactura staff for updating user profiles</p>
+<dl class="attribute">
+<dt id="users.views.StaffUserUpdateView.form_class">
+<code class="sig-name descname">form_class</code><a class="headerlink" href="#users.views.StaffUserUpdateView.form_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">users.templates.users.forms.StaffUserUpdateForm</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="users.views.StaffUserUpdateView.model">
+<code class="sig-name descname">model</code><a class="headerlink" href="#users.views.StaffUserUpdateView.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <a class="reference internal" href="#users.models.Profile" title="users.models.Profile"><code class="xref py py-class docutils literal notranslate"><span class="pre">users.models.Profile</span></code></a></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="users.views.StaffUserUpdateView.template_name">
+<code class="sig-name descname">template_name</code><em class="property"> = 'users/staff_user_update.html'</em><a class="headerlink" href="#users.views.StaffUserUpdateView.template_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="users.views.StaffUserUpdateView.test_func">
+<code class="sig-name descname">test_func</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#users.views.StaffUserUpdateView.test_func" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="users.views.UnBlockUserView">
+<em class="property">class </em><code class="sig-prename descclassname">users.views.</code><code class="sig-name descname">UnBlockUserView</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#users.views.UnBlockUserView" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.contrib.auth.mixins.LoginRequiredMixin</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">django.contrib.auth.mixins.UserPassesTestMixin</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.base.View</span></code></p>
+<p>View rendered to unblock users from sending chat messages</p>
+<dl class="method">
+<dt id="users.views.UnBlockUserView.get">
+<code class="sig-name descname">get</code><span class="sig-paren">(</span><em class="sig-param">request</em>, <em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#users.views.UnBlockUserView.get" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="users.views.UnBlockUserView.post">
+<code class="sig-name descname">post</code><span class="sig-paren">(</span><em class="sig-param">request</em>, <em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#users.views.UnBlockUserView.post" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="users.views.UnBlockUserView.template_name">
+<code class="sig-name descname">template_name</code><em class="property"> = 'users/unblock_user.html'</em><a class="headerlink" href="#users.views.UnBlockUserView.template_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="users.views.UnBlockUserView.test_func">
+<code class="sig-name descname">test_func</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#users.views.UnBlockUserView.test_func" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="users.views.profile_home">
+<code class="sig-prename descclassname">users.views.</code><code class="sig-name descname">profile_home</code><span class="sig-paren">(</span><em class="sig-param">request</em><span class="sig-paren">)</span><a class="headerlink" href="#users.views.profile_home" title="Permalink to this definition">¶</a></dt>
+<dd><p>View for displaying profile homepage</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="users.views.push_notify">
+<code class="sig-prename descclassname">users.views.</code><code class="sig-name descname">push_notify</code><span class="sig-paren">(</span><em class="sig-param">profile</em>, <em class="sig-param">phone</em><span class="sig-paren">)</span><a class="headerlink" href="#users.views.push_notify" title="Permalink to this definition">¶</a></dt>
+<dd><p>Push notification for new registrations</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="users.views.save">
+<code class="sig-prename descclassname">users.views.</code><code class="sig-name descname">save</code><span class="sig-paren">(</span><em class="sig-param">request</em><span class="sig-paren">)</span><a class="headerlink" href="#users.views.save" title="Permalink to this definition">¶</a></dt>
+<dd><p>Internal process for saving user location</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="users.views.staff">
+<code class="sig-prename descclassname">users.views.</code><code class="sig-name descname">staff</code><span class="sig-paren">(</span><em class="sig-param">request</em><span class="sig-paren">)</span><a class="headerlink" href="#users.views.staff" title="Permalink to this definition">¶</a></dt>
+<dd><p>View rendered to techfactura staff for staff homepage</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-users">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-users" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="sales.html" class="btn btn-neutral float-left" title="sales package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Michael Bomett
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

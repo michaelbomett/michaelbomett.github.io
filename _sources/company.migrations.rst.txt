@@ -1,0 +1,302 @@
+company.migrations package
+==========================
+
+Submodules
+----------
+
+company.migrations.0001\_initial module
+---------------------------------------
+
+.. automodule:: company.migrations.0001_initial
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+company.migrations.0002\_auto\_20190730\_1959 module
+----------------------------------------------------
+
+.. automodule:: company.migrations.0002_auto_20190730_1959
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+company.migrations.0003\_auto\_20190730\_2019 module
+----------------------------------------------------
+
+.. automodule:: company.migrations.0003_auto_20190730_2019
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+company.migrations.0004\_subcategory\_thumbnail module
+------------------------------------------------------
+
+.. automodule:: company.migrations.0004_subcategory_thumbnail
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+company.migrations.0005\_auto\_20190730\_2214 module
+----------------------------------------------------
+
+.. automodule:: company.migrations.0005_auto_20190730_2214
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+company.migrations.0006\_pricing\_product\_code module
+------------------------------------------------------
+
+.. automodule:: company.migrations.0006_pricing_product_code
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+company.migrations.0007\_auto\_20190812\_1201 module
+----------------------------------------------------
+
+.. automodule:: company.migrations.0007_auto_20190812_1201
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+company.migrations.0008\_pricing\_added\_by module
+--------------------------------------------------
+
+.. automodule:: company.migrations.0008_pricing_added_by
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+company.migrations.0009\_auto\_20190818\_1404 module
+----------------------------------------------------
+
+.. automodule:: company.migrations.0009_auto_20190818_1404
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+company.migrations.0010\_compprofile\_country module
+----------------------------------------------------
+
+.. automodule:: company.migrations.0010_compprofile_country
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+company.migrations.0011\_auto\_20190818\_1721 module
+----------------------------------------------------
+
+.. automodule:: company.migrations.0011_auto_20190818_1721
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+company.migrations.0012\_exemptions\_country module
+---------------------------------------------------
+
+.. automodule:: company.migrations.0012_exemptions_country
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+company.migrations.0013\_auto\_20190818\_2148 module
+----------------------------------------------------
+
+.. automodule:: company.migrations.0013_auto_20190818_2148
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+company.migrations.0014\_compprofile\_geometry module
+-----------------------------------------------------
+
+.. automodule:: company.migrations.0014_compprofile_geometry
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+company.migrations.0015\_remove\_compprofile\_tax\_id module
+------------------------------------------------------------
+
+.. automodule:: company.migrations.0015_remove_compprofile_tax_id
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+company.migrations.0016\_auto\_20190828\_1355 module
+----------------------------------------------------
+
+.. automodule:: company.migrations.0016_auto_20190828_1355
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+company.migrations.0017\_auto\_20190828\_1356 module
+----------------------------------------------------
+
+.. automodule:: company.migrations.0017_auto_20190828_1356
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+company.migrations.0018\_pricing\_user module
+---------------------------------------------
+
+.. automodule:: company.migrations.0018_pricing_user
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+company.migrations.0019\_auto\_20190828\_1540 module
+----------------------------------------------------
+
+.. automodule:: company.migrations.0019_auto_20190828_1540
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+company.migrations.0020\_pricing\_audience module
+-------------------------------------------------
+
+.. automodule:: company.migrations.0020_pricing_audience
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+company.migrations.0021\_compprofile\_private module
+----------------------------------------------------
+
+.. automodule:: company.migrations.0021_compprofile_private
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+company.migrations.0022\_auto\_20190830\_0314 module
+----------------------------------------------------
+
+.. automodule:: company.migrations.0022_auto_20190830_0314
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+company.migrations.0023\_auto\_20190830\_1402 module
+----------------------------------------------------
+
+.. automodule:: company.migrations.0023_auto_20190830_1402
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+company.migrations.0024\_pricing\_geometry module
+-------------------------------------------------
+
+.. automodule:: company.migrations.0024_pricing_geometry
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+company.migrations.0025\_purchaseorderitems\_purchaseorders module
+------------------------------------------------------------------
+
+.. automodule:: company.migrations.0025_purchaseorderitems_purchaseorders
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+company.migrations.0026\_auto\_20190901\_1807 module
+----------------------------------------------------
+
+.. automodule:: company.migrations.0026_auto_20190901_1807
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+company.migrations.0027\_purchaseorders\_invoice module
+-------------------------------------------------------
+
+.. automodule:: company.migrations.0027_purchaseorders_invoice
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+company.migrations.0028\_purchaseorders\_delivery module
+--------------------------------------------------------
+
+.. automodule:: company.migrations.0028_purchaseorders_delivery
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+company.migrations.0029\_auto\_20190904\_1142 module
+----------------------------------------------------
+
+.. automodule:: company.migrations.0029_auto_20190904_1142
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+company.migrations.0030\_auto\_20190905\_2014 module
+----------------------------------------------------
+
+.. automodule:: company.migrations.0030_auto_20190905_2014
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+company.migrations.0031\_auto\_20190905\_2021 module
+----------------------------------------------------
+
+.. automodule:: company.migrations.0031_auto_20190905_2021
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+company.migrations.0032\_auto\_20190905\_2121 module
+----------------------------------------------------
+
+.. automodule:: company.migrations.0032_auto_20190905_2121
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+company.migrations.0033\_auto\_20190905\_2128 module
+----------------------------------------------------
+
+.. automodule:: company.migrations.0033_auto_20190905_2128
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+company.migrations.0034\_auto\_20190906\_1045 module
+----------------------------------------------------
+
+.. automodule:: company.migrations.0034_auto_20190906_1045
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+company.migrations.0035\_auto\_20190908\_0106 module
+----------------------------------------------------
+
+.. automodule:: company.migrations.0035_auto_20190908_0106
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+company.migrations.0036\_auto\_20190908\_1327 module
+----------------------------------------------------
+
+.. automodule:: company.migrations.0036_auto_20190908_1327
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: company.migrations
+   :members:
+   :undoc-members:
+   :show-inheritance:

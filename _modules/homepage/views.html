@@ -1,0 +1,338 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>homepage.views &mdash; Techfactura 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Techfactura
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">mobile_app</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Techfactura</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>homepage.views</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for homepage.views</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="k">import</span> <span class="n">render</span><span class="p">,</span> <span class="n">get_object_or_404</span><span class="p">,</span> <span class="n">redirect</span>
+<span class="kn">from</span> <span class="nn">django.utils.translation</span> <span class="k">import</span> <span class="n">gettext</span> <span class="k">as</span> <span class="n">_</span>
+<span class="kn">from</span> <span class="nn">allauth.account.admin</span> <span class="k">import</span> <span class="n">EmailAddress</span>
+<span class="kn">from</span> <span class="nn">django.views.generic</span> <span class="k">import</span> <span class="n">View</span>
+<span class="kn">from</span> <span class="nn">django.core.mail</span> <span class="k">import</span> <span class="n">send_mail</span><span class="p">,</span> <span class="n">BadHeaderError</span>
+<span class="kn">from</span> <span class="nn">django.template</span> <span class="k">import</span> <span class="n">loader</span>
+<span class="kn">from</span> <span class="nn">django.contrib</span> <span class="k">import</span> <span class="n">messages</span>
+
+<span class="kn">from</span> <span class="nn">users.models</span> <span class="k">import</span> <span class="n">Profile</span><span class="p">,</span> <span class="n">CMessage</span>
+<span class="kn">from</span> <span class="nn">company.models</span> <span class="k">import</span> <span class="n">CompProfile</span><span class="p">,</span> <span class="n">Pricing</span><span class="p">,</span> <span class="n">CategoryBase</span><span class="p">,</span> <span class="n">SubCategory</span>
+<span class="kn">from</span> <span class="nn">sales.models</span> <span class="k">import</span> <span class="n">InvoiceNewTotal</span>
+<span class="kn">from</span> <span class="nn">.templates.homepage.forms</span> <span class="k">import</span> <span class="n">ContactForm</span><span class="p">,</span> <span class="n">CompanyRequest</span><span class="p">,</span> <span class="n">SearchForm</span>
+<span class="kn">from</span> <span class="nn">.filters</span> <span class="k">import</span> <span class="n">SearchFilter</span>
+
+
+<div class="viewcode-block" id="Home"><a class="viewcode-back" href="../../homepage.html#homepage.views.Home">[docs]</a><span class="k">class</span> <span class="nc">Home</span><span class="p">(</span><span class="n">View</span><span class="p">):</span>
+
+    <span class="n">template_name</span> <span class="o">=</span> <span class="s1">&#39;homepage/home.html&#39;</span>
+
+<div class="viewcode-block" id="Home.get"><a class="viewcode-back" href="../../homepage.html#homepage.views.Home.get">[docs]</a>    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">is_authenticated</span><span class="p">:</span>
+            <span class="n">verified</span> <span class="o">=</span> <span class="n">EmailAddress</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">,</span> <span class="n">verified</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span>
+            <span class="n">suppliers</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+            <span class="n">unpaid</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+            <span class="n">overdue</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+            <span class="n">unpaid_staff</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+            <span class="n">overdue_staff</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+            <span class="n">company_email</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+            <span class="n">total_unread</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+            <span class="n">form</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+            <span class="n">approved_products</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+            <span class="n">moderated_products</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">compprofile</span><span class="p">:</span>
+                    <span class="n">suppliers</span> <span class="o">=</span> <span class="n">Profile</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">supply</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">compprofile</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+                    <span class="n">unpaid</span> <span class="o">=</span> <span class="n">InvoiceNewTotal</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">company</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">compprofile</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="s1">&#39;unpaid&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+                    <span class="n">overdue</span> <span class="o">=</span> <span class="n">InvoiceNewTotal</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">company</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">compprofile</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="s1">&#39;overdue&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+                    <span class="n">obj</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="n">CompProfile</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">EmailAddress</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">,</span> <span class="n">email</span><span class="o">=</span><span class="n">obj</span><span class="o">.</span><span class="n">email</span><span class="p">,</span> <span class="n">verified</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+                        <span class="n">company_email</span> <span class="o">=</span> <span class="kc">False</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">company_email</span> <span class="o">=</span> <span class="kc">True</span>
+
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">profile</span><span class="o">.</span><span class="n">company</span><span class="p">:</span>
+                    <span class="n">unpaid_staff</span> <span class="o">=</span> <span class="n">InvoiceNewTotal</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">company</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">profile</span><span class="o">.</span><span class="n">company</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="s1">&#39;unpaid&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+                    <span class="n">overdue_staff</span> <span class="o">=</span> <span class="n">InvoiceNewTotal</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">company</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">profile</span><span class="o">.</span><span class="n">company</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="s1">&#39;overdue&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">received_list</span> <span class="o">=</span> <span class="n">CMessage</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">receiver</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">profile</span><span class="p">)</span>
+                <span class="n">sent_list</span> <span class="o">=</span> <span class="n">CMessage</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">sender</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">profile</span><span class="p">)</span>
+                <span class="n">unread_received</span> <span class="o">=</span> <span class="n">received_list</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">read</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+                <span class="n">unread_sent</span> <span class="o">=</span> <span class="n">sent_list</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">read</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+                <span class="n">total_unread</span> <span class="o">=</span> <span class="n">unread_received</span> <span class="o">+</span> <span class="n">unread_sent</span>
+
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">form</span> <span class="o">=</span> <span class="n">CompanyRequest</span><span class="p">()</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">my_products</span> <span class="o">=</span> <span class="n">Pricing</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">my_products</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span>
+                <span class="n">approved_products</span> <span class="o">=</span> <span class="n">my_products</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">activate</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+                <span class="n">moderated_products</span> <span class="o">=</span> <span class="n">my_products</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">activate</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+
+            <span class="n">product_list</span> <span class="o">=</span> <span class="n">Pricing</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">activate</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">mysearch</span> <span class="o">=</span> <span class="n">SearchFilter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="p">,</span> <span class="n">product_list</span><span class="p">)</span>
+
+            <span class="n">categories</span> <span class="o">=</span> <span class="n">CategoryBase</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+            <span class="n">sub_categories</span> <span class="o">=</span> <span class="n">SubCategory</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+
+            <span class="n">context</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Home&#39;</span><span class="p">),</span> <span class="s2">&quot;verified&quot;</span><span class="p">:</span> <span class="n">verified</span><span class="p">,</span> <span class="s2">&quot;company_email&quot;</span><span class="p">:</span> <span class="n">company_email</span><span class="p">,</span> <span class="s2">&quot;suppliers&quot;</span><span class="p">:</span> <span class="n">suppliers</span><span class="p">,</span>
+                       <span class="s2">&quot;form&quot;</span><span class="p">:</span> <span class="n">form</span><span class="p">,</span> <span class="s2">&quot;unpaid&quot;</span><span class="p">:</span> <span class="n">unpaid</span><span class="p">,</span> <span class="s2">&quot;overdue&quot;</span><span class="p">:</span> <span class="n">overdue</span><span class="p">,</span> <span class="s2">&quot;unpaid_staff&quot;</span><span class="p">:</span> <span class="n">unpaid_staff</span><span class="p">,</span>
+                       <span class="s2">&quot;overdue_staff&quot;</span><span class="p">:</span> <span class="n">overdue_staff</span><span class="p">,</span> <span class="s2">&quot;total_unread&quot;</span><span class="p">:</span> <span class="n">total_unread</span><span class="p">,</span> <span class="s2">&quot;categories&quot;</span><span class="p">:</span> <span class="n">categories</span><span class="p">,</span>
+                       <span class="s2">&quot;sub_categories&quot;</span><span class="p">:</span> <span class="n">sub_categories</span><span class="p">,</span> <span class="s2">&quot;approved_products&quot;</span><span class="p">:</span> <span class="n">approved_products</span><span class="p">,</span>
+                       <span class="s2">&quot;moderated_products&quot;</span><span class="p">:</span> <span class="n">moderated_products</span><span class="p">,</span> <span class="s2">&quot;filter&quot;</span><span class="p">:</span> <span class="n">mysearch</span><span class="p">}</span>
+            <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;homepage/home.html&#39;</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">product_list</span> <span class="o">=</span> <span class="n">Pricing</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">activate</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">mysearch</span> <span class="o">=</span> <span class="n">SearchFilter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="p">,</span> <span class="n">product_list</span><span class="p">)</span>
+            <span class="n">categories</span> <span class="o">=</span> <span class="n">CategoryBase</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+            <span class="n">sub_categories</span> <span class="o">=</span> <span class="n">SubCategory</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+            <span class="n">context</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Home&#39;</span><span class="p">),</span> <span class="s2">&quot;categories&quot;</span><span class="p">:</span> <span class="n">categories</span><span class="p">,</span> <span class="s2">&quot;sub_categories&quot;</span><span class="p">:</span> <span class="n">sub_categories</span><span class="p">,</span> <span class="s2">&quot;filter&quot;</span><span class="p">:</span> <span class="n">mysearch</span><span class="p">}</span>
+        <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">template_name</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Home.post"><a class="viewcode-back" href="../../homepage.html#homepage.views.Home.post">[docs]</a>    <span class="k">def</span> <span class="nf">post</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="n">form</span> <span class="o">=</span> <span class="n">CompanyRequest</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="p">)</span>
+        <span class="c1"># search_form = SearchForm(request.POST)</span>
+        <span class="c1">#</span>
+        <span class="c1"># if search_form.is_valid():</span>
+        <span class="c1">#     return redirect(&#39;homepage-home&#39;)</span>
+
+        <span class="k">if</span> <span class="n">form</span><span class="o">.</span><span class="n">is_valid</span><span class="p">():</span>
+            <span class="n">my_profile</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">profile</span>
+            <span class="n">my_profile</span><span class="o">.</span><span class="n">company_request</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="n">my_profile</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s1">&#39;homepage-home&#39;</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="About"><a class="viewcode-back" href="../../homepage.html#homepage.views.About">[docs]</a><span class="k">class</span> <span class="nc">About</span><span class="p">(</span><span class="n">View</span><span class="p">):</span>
+
+    <span class="n">template_name</span> <span class="o">=</span> <span class="s1">&#39;homepage/about.html&#39;</span>
+
+<div class="viewcode-block" id="About.get"><a class="viewcode-back" href="../../homepage.html#homepage.views.About.get">[docs]</a>    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="n">form</span> <span class="o">=</span> <span class="n">ContactForm</span><span class="p">()</span>
+        <span class="n">context</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;About&#39;</span><span class="p">),</span> <span class="s1">&#39;form&#39;</span><span class="p">:</span> <span class="n">form</span><span class="p">}</span>
+        <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">template_name</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="About.post"><a class="viewcode-back" href="../../homepage.html#homepage.views.About.post">[docs]</a>    <span class="k">def</span> <span class="nf">post</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="n">form</span> <span class="o">=</span> <span class="n">ContactForm</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">POST</span> <span class="ow">or</span> <span class="kc">None</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">form</span><span class="o">.</span><span class="n">is_valid</span><span class="p">():</span>
+
+            <span class="n">html_message</span> <span class="o">=</span> <span class="n">loader</span><span class="o">.</span><span class="n">render_to_string</span><span class="p">(</span>
+                <span class="s1">&#39;homepage/contact_email.html&#39;</span><span class="p">,</span>
+                <span class="p">{</span>
+                    <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="n">form</span><span class="o">.</span><span class="n">cleaned_data</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">],</span>
+                    <span class="s1">&#39;subject&#39;</span><span class="p">:</span> <span class="n">form</span><span class="o">.</span><span class="n">cleaned_data</span><span class="p">[</span><span class="s1">&#39;subject&#39;</span><span class="p">],</span>
+                    <span class="s1">&#39;phone&#39;</span><span class="p">:</span> <span class="n">form</span><span class="o">.</span><span class="n">cleaned_data</span><span class="p">[</span><span class="s1">&#39;phone&#39;</span><span class="p">],</span>
+                    <span class="s1">&#39;email&#39;</span><span class="p">:</span> <span class="n">form</span><span class="o">.</span><span class="n">cleaned_data</span><span class="p">[</span><span class="s1">&#39;email&#39;</span><span class="p">],</span>
+                    <span class="s1">&#39;message&#39;</span><span class="p">:</span> <span class="n">form</span><span class="o">.</span><span class="n">cleaned_data</span><span class="p">[</span><span class="s1">&#39;message&#39;</span><span class="p">],</span>
+                <span class="p">}</span>
+            <span class="p">)</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">send_mail</span><span class="p">(</span><span class="n">form</span><span class="o">.</span><span class="n">cleaned_data</span><span class="p">[</span><span class="s1">&#39;subject&#39;</span><span class="p">],</span>
+                          <span class="n">form</span><span class="o">.</span><span class="n">cleaned_data</span><span class="p">[</span><span class="s1">&#39;message&#39;</span><span class="p">],</span>
+                          <span class="n">form</span><span class="o">.</span><span class="n">cleaned_data</span><span class="p">[</span><span class="s1">&#39;email&#39;</span><span class="p">],</span>
+                          <span class="p">[</span><span class="s1">&#39;info@techfactura.com&#39;</span><span class="p">],</span>
+                          <span class="n">fail_silently</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                          <span class="n">html_message</span><span class="o">=</span><span class="n">html_message</span>
+                          <span class="p">)</span>
+                <span class="n">messages</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="p">,</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Sent: Thank you for your message&#39;</span><span class="p">))</span>
+            <span class="k">except</span> <span class="n">BadHeaderError</span><span class="p">:</span>
+                <span class="n">messages</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="p">,</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Error: message was not sent&#39;</span><span class="p">))</span>
+
+        <span class="n">form</span> <span class="o">=</span> <span class="n">ContactForm</span><span class="p">()</span>
+        <span class="n">context</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;About&#39;</span><span class="p">),</span> <span class="s1">&#39;form&#39;</span><span class="p">:</span> <span class="n">form</span><span class="p">}</span>
+        <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">template_name</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="browser"><a class="viewcode-back" href="../../homepage.html#homepage.views.browser">[docs]</a><span class="k">def</span> <span class="nf">browser</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;homepage/browser.html&#39;</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Michael Bomett
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

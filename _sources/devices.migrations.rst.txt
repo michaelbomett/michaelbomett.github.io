@@ -1,0 +1,10 @@
+devices.migrations package
+==========================
+
+Module contents
+---------------
+
+.. automodule:: devices.migrations
+   :members:
+   :undoc-members:
+   :show-inheritance:

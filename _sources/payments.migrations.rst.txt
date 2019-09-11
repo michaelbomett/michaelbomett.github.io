@@ -1,0 +1,70 @@
+payments.migrations package
+===========================
+
+Submodules
+----------
+
+payments.migrations.0001\_initial module
+----------------------------------------
+
+.. automodule:: payments.migrations.0001_initial
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+payments.migrations.0002\_auto\_20190812\_1201 module
+-----------------------------------------------------
+
+.. automodule:: payments.migrations.0002_auto_20190812_1201
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+payments.migrations.0003\_auto\_20190812\_1340 module
+-----------------------------------------------------
+
+.. automodule:: payments.migrations.0003_auto_20190812_1340
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+payments.migrations.0004\_auto\_20190812\_1341 module
+-----------------------------------------------------
+
+.. automodule:: payments.migrations.0004_auto_20190812_1341
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+payments.migrations.0005\_auto\_20190813\_0240 module
+-----------------------------------------------------
+
+.. automodule:: payments.migrations.0005_auto_20190813_0240
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+payments.migrations.0006\_auto\_20190813\_0252 module
+-----------------------------------------------------
+
+.. automodule:: payments.migrations.0006_auto_20190813_0252
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+payments.migrations.0007\_auto\_20190813\_1403 module
+-----------------------------------------------------
+
+.. automodule:: payments.migrations.0007_auto_20190813_1403
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: payments.migrations
+   :members:
+   :undoc-members:
+   :show-inheritance:

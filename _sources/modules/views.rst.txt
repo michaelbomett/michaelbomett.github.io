@@ -1,0 +1,8 @@
+
+Views
+======
+.. automodule:: mobile_app.sales.views
+    :members:
+
+.. automodule:: mobile_app.devices.views
+    :members:
